@@ -6,6 +6,7 @@ import {landingRouting} from './app.routing';
 import { AdminRoutesComponent } from './admin/admin-routes/admin-routes.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { InitFrameComponent } from './users/init-frame/init-frame.component';
+import { HeaderComponent } from './shared/layouts/frames/header/header.component';
 
 @NgModule({
   declarations: [

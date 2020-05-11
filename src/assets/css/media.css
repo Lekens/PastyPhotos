@@ -1,0 +1,120 @@
+
+/*
+@media screen and (max-width: 768px) {
+
+    .filter-strip {
+        justify-content: center;
+    }
+}
+*/
+
+@media screen and (max-width: 767px) {
+    .footer-bottom {
+        text-align: center;
+    }
+    #features {
+        padding-top: 100px;
+        padding-bottom: 70px; }
+    .section-title {
+        font-size: 30px;
+    }
+    .checkout-btn {
+        padding: 15px 55px;
+    }
+    #hero-content {
+        padding-top: 120px;
+        /*padding-bottom: 10px;*/
+    }
+    .hero-title {
+        font-size: 34px;
+        line-height: 40px;
+    }
+    .intro-btn > a {
+        margin: 20px 10px; }
+    .no-padding {
+        padding-left: 15px;
+        padding-right: 15px; }
+    #steps {
+        padding-top: 70px;
+        padding-bottom: 70px; }
+
+    .filter-strip {
+        justify-content: inherit;
+    }
+
+    .selected-width {
+        width: 100% !important;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .filter-strip {
+        justify-content: center;
+    }
+    .checkout-btn {
+        padding: 18px 85px;
+    }
+
+    .checkout-btn-div {
+        margin-left: -30px!important;
+    }
+    .selected-width {
+        width: 78% !important;
+        margin-left: 7.5%;
+    }
+
+
+}
+
+@media screen and (max-width: 320px) {
+
+
+    .selected-width {
+        width: 100% !important;
+    }
+    #contact-us {
+        display: none;
+    }
+}
+
+
+
+@media screen and (max-width: 991px) {
+    .navbar-header {
+        float: none; }
+    .navbar-toggle {
+        display: block; }
+    .navbar-collapse.collapse {
+        display: none !important; }
+    .navbar-collapse.collapse.in {
+        display: block !important; }
+    .nav.navbar-nav.pull-right {
+        float: none !important;
+        padding-left: 15px; }
+    .nav.navbar-nav > li {
+        float: none; }
+    .navbar-toggle {
+        background: #fc17f3; }
+    .navbar-toggle .icon-bar {
+        background: #fff; }
+    .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+        max-height: 500px; }
+    #main-nav {
+        background: #fff;
+        color: #000; }
+    .logo-default {
+        opacity: 0; }
+    .logo-dark {
+        opacity: 1; }
+
+    .checkout-btn {
+        padding: 15px 30px;
+    }
+    .filter-strip {
+        justify-content: inherit;
+    }
+
+    .selected-width {
+        width: 100% !important;
+    }
+}

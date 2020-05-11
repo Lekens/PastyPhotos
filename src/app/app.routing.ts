@@ -4,6 +4,7 @@ import {InitFrameComponent} from './users/init-frame/init-frame.component';
 import {AdminRoutesComponent} from './admin/admin-routes/admin-routes.component';
 import {OrdersComponent} from './admin/orders/orders.component';
 import {GuardService} from './services/gaurdService/guard.service';
+import {HeaderComponent} from "./shared/layouts/frames/header/header.component";
 
 export interface IRouting {
   routes: ModuleWithProviders;
@@ -24,6 +25,7 @@ export const landingRouting: IRouting = {
   routes: RouterModule.forRoot(landingRoutes, {useHash: false}),
   components: [
     InitFrameComponent,
+    HeaderComponent
   ],
   entryComponent: [],
   providers: []

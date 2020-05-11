@@ -2,13 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>PastyPhotos</title>
-  <base href="/">
-
+  <title>PastyPhotos: Frame your favourite pictures in 3 easy steps</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/fontawesome.min.css" rel="stylesheet">
+  <meta name="description" content="Frame your favourite pictures in 3 easy steps.">
+  <meta name="author" content="Arokoyu Olalekan">
+  <!-- Favicon-->
+  <link rel="icon" href="favicon.png" type="image/png">
+  <base href="/">
+  <style type="text/css">
+    #page-loader {
+      background: #fff;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      z-index: 999;
+    }
+    .loader-icon {
+      height: 50px;
+      left: 50%;
+      margin: -20px 0 0 -20px;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      width: 50px;
+    }
+    .colored-border {
+      border-color: #fff;
+    }
+  </style>
 </head>
-<body>
-  <app-root></app-root>
+
+<body id="top">
+
+  <app-root>
+    <!-- LOADER TEMPLATE -->
+    <div id="page-loader">
+      <div class="loader-icon fa fa-spin colored-border">
+        <img src="assets/img/logo/favicon.png" width="40">
+      </div>
+    </div>
+    <!-- /LOADER TEMPLATE -->
+  </app-root>
 </body>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5eb9ca24967ae56c5218dc07/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
+<!--End of Tawk.to Script-->
 </html>

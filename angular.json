@@ -31,7 +31,9 @@
               "./node_modules/popper.js/dist/umd/popper.min.js",
               "./node_modules/moment/min/moment.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "src/assets/js/jquery.dataTables.min.js"
+              "src/assets/js/jquery.dataTables.min.js",
+              "src/assets/js/beborn.js",
+              "src/assets/js/easing.js"
             ]
           },
           "configurations": {

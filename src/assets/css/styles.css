@@ -1,0 +1,237 @@
+
+@font-face {
+    font-family: 'Cosmica';
+    src: url("../fonts/Cosmica/Cosmica/Cosmica-Regular.otf");
+/*url("../fonts/Cosmica/Cosmica/simple-Line-Icons.eot") format("embedded-opentype"),*/
+    src: url("../fonts/Cosmica/Cosmica/Cosmica-Regular.otf") format("otf"), url("../fonts/Cosmica/Cosmica/Cosmica-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal
+}
+
+
+@font-face {
+    font-family: 'Cosmica-Bold';
+    src: url("../fonts/Cosmica/Cosmica/Cosmica-Bold.otf");
+    /*url("../fonts/Cosmica/Cosmica/simple-Line-Icons.eot") format("embedded-opentype"),*/
+    src: url("../fonts/Cosmica/Cosmica/Cosmica-Bold.otf") format("otf"), url("../fonts/Cosmica/Cosmica/Cosmica-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal
+}
+@font-face {
+    font-family: 'Cosmica-Medium';
+    src: url("../fonts/Cosmica/Cosmica/Cosmica-Medium.otf");
+    /*url("../fonts/Cosmica/Cosmica/simple-Line-Icons.eot") format("embedded-opentype"),*/
+    src: url("../fonts/Cosmica/Cosmica/Cosmica-Medium.otf") format("otf"), url("../fonts/Cosmica/Cosmica/Cosmica-Medium.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal
+}
+.body {
+    font-family: Cosmica;
+}
+.padding-header {
+    background: #FFFFFF;
+    box-sizing: border-box;
+    font-family: Cosmica;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    display: flex;
+    align-items: flex-end;
+    text-align: center;
+}
+
+/*.padding-header {
+    padding-left: 100px;
+    padding-right: 100px;
+}*/
+
+.btn-color {
+  border: none;
+  background: linear-gradient(90deg, #59BFFF -5.03%, #5dc1ff 68.18%);
+  box-shadow: 0px 4px 10px rgba(194, 199, 228, 0.5);
+  border-radius: 25px;
+  width: 70px;
+  padding: 5px 6px;
+}
+.btn-color:hover {
+  outline: none!important;
+  background: linear-gradient(90deg, #59bfff -5.03%, #5dc1ff 68.18%);
+}
+.btn-color:focus {
+  box-shadow: 0 0 0 0.2rem rgba(93, 193, 255, 0.35);
+}
+.btn-color span {
+  font-size: 10px;
+  font-family: Cosmica-Bold;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  padding: 0 14px;
+  color: #ffffff;
+  /*line-height: 1.4;*/
+  letter-spacing: normal;
+  /*text-align: center;*/
+}
+
+
+.build-frame {
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+
+    text-transform: uppercase;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+
+    width: 210px;
+    height: 54px;
+    font-family: Cosmica-Bold;
+    box-shadow: 0 5px 10px 0 rgba(184, 23, 255, 0.35);
+    background-image: linear-gradient(to bottom, #ff59cc, #ff8edc 27%, #ff59cc 73%, #fc17f3);
+}
+.build-frame:focus {
+    box-shadow: 0 0 0 0.2rem rgba(184, 23, 255, 0.35);
+    outline: none!important;
+}
+
+
+.build-frame:hover span {
+    display:none
+}
+
+.build-frame:hover:before {
+    content:"Let's Go";
+}
+.upload-holder {
+    height: auto;
+    min-height: 415px;
+    border-radius: 20px;
+}
+.design-holder {
+
+}
+
+.frame-style {
+    /*width: 103px;*/
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+
+
+.filter-button .filter-name {
+    margin-top: 2px;
+    /*font-weight: 700;*/
+    font-size: 13px;
+    text-transform: uppercase;
+    font-family: Cosmica-Bold;
+    /*font-size: 8px;*/
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: center;
+}
+
+.filter-button.selected {
+    /*background-image: linear-gradient(0deg, rgba(255, 0, 149, .25), rgba(255, 0, 149, 0));*/
+    color: #ffffff;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.16);
+    background-image: linear-gradient(to bottom, #ff59cc, #fc17b5);
+}
+
+.frame-styles {
+    font-family: Cosmica-Bold;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    text-transform: uppercase;
+    line-height: 1.36;
+    /*margin: 0 0 20px 0;*/
+    letter-spacing: normal;
+    text-align: center;
+    color: #707070;
+}
+.upload-box-text {
+    font-family: Cosmica-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    text-transform: uppercase;
+    letter-spacing: normal;
+    /*text-align: center;*/
+    color: #d8d8d8;
+}
+
+.checkout-btn {
+    font-family: Cosmica-Bold;
+    text-transform: uppercase;
+    font-size: 32px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.32;
+    letter-spacing: normal;
+    text-align: center;
+    border-radius: 42px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+
+}
+
+.checkout-btn:disabled {
+    background-color: #ffffff;
+    color: #d8d8d8;
+
+}
+.checkout-btn:not([disabled]) {
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.05);
+    background-image: linear-gradient(to bottom, #59bfff, #0b57ff);
+    color: #ffffff;
+}
+.checkout-btn:enabled {
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.05);
+    background-image: linear-gradient(to bottom, #59bfff, #0b57ff);
+    color: #ffffff;
+
+}
+
+.upload-icon {
+    display: none;
+}
+.SquareUploadButton:hover {
+    background-image: none!important;
+}
+.SquareUploadButton:hover .plus-icon {
+    display: none;
+}
+.SquareUploadButton:hover .upload-icon {
+    display: block;
+}
+
+
+.SquareUploadButton:not(hover) {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23FF59CCFF' stroke-width='12' stroke-dasharray='21' stroke-dashoffset='28' stroke-linecap='round'/%3e%3c/svg%3e");
+}
+
+
+
+.checkout-btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(89, 191, 255, 0.35);
+    outline: none!important;
+}

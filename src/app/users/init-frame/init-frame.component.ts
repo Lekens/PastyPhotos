@@ -11,5 +11,8 @@ export class InitFrameComponent implements OnInit {
 
   ngOnInit() {
   }
+  goBack() {
+    window.history.back();
+  }
 
 }

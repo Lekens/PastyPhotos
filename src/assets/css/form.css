@@ -1,0 +1,283 @@
+
+
+
+#checkout-overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(7, 7, 7, 0.81);
+    z-index: 999;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    cursor: pointer;
+}
+
+
+
+
+
+.login-sec {
+    padding: 40px 0;
+    position: relative;
+    background-color: #ffffff;
+}
+
+.padding-x-30 {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.hr-form {
+    height: 10px;
+}
+
+.login-sec h2 {
+    font-family: Cosmica-Bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.32;
+    letter-spacing: normal;
+    text-align: center;
+    color: #363636;
+    margin-bottom: 30px;
+
+}
+.login-sec .label-input100 {
+    font-family: Cosmica-Bold;
+    font-size: 8px;
+    text-transform: uppercase;
+    /*font-weight: bold;*/
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: center;
+    color: #c3c3c3;
+
+}
+
+/*.label-input100 {
+
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.5;
+    padding-left: 7px;
+}*/
+
+
+.login-sec .copy-text i {
+    color: red;
+}
+
+.login-sec .copy-text a {
+    color: red;
+}
+/*
+
+.login-sec h2:after {
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background: red;
+    display: block;
+    margin-top: 8px;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: auto
+}
+*/
+
+
+.banner-text {
+    width: 70%;
+    position: absolute;
+    bottom: 40px;
+    padding-left: 20px;
+}
+
+.banner-text h2 {
+    color: #fff;
+    font-weight: 600;
+}
+
+.banner-text h2:after {
+    content: " ";
+    width: 100px;
+    height: 5px;
+    background: #FFF;
+    display: block;
+    margin-top: 20px;
+    border-radius: 3px;
+}
+
+.banner-text p {
+    color: #fff;
+}
+
+
+
+/* login start */
+
+.container-login100-form-btn {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    padding-top: 8%;
+    padding-bottom: 5%;
+}
+
+
+.header-title {
+    font-family: Cosmica-Bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.53;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ff59cc;
+}
+
+tbody .th {
+    font-family: Cosmica-Bold;
+    font-size: 10px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.56;
+    letter-spacing: normal;
+    text-align: left;
+    color: #363636;
+}
+tbody .td {
+    font-family: Cosmica;
+    font-size: 10px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.56;
+    letter-spacing: normal;
+    text-align: left;
+    color: #363636;
+}
+.validate-input {
+    position: relative;
+}
+
+.wrap-input100 {
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid #d9d9d9;
+    margin-bottom: 2%;
+}
+
+input:focus {
+    border-color: transparent !important;
+}
+
+.input100:focus+.focus-input100::before {
+    width: 100%;
+}
+
+
+
+.input100 {
+    font-size: 10px;
+    /*color: #333333;*/
+    /*line-height: 1.2;*/
+    display: block;
+    width: 100%;
+    height: 30px;
+    background: transparent;
+    text-align: center;
+    /*padding: 0 7px 0 43px;*/
+
+    text-transform: uppercase;
+    font-family: "Cosmica";
+    /*font-size: 7px;*/
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    /*text-align: center;*/
+    color: #363636;
+
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+.close-icon-box {
+    top: .5%;
+    left: 3.2%;
+    width:16px;
+    height:16px;
+    cursor: pointer;
+    padding: 10px;
+    border: 2px solid #ff59cc;
+    border-radius: 50%
+}
+.close-icon-box div {
+    margin-top: -15px;
+    margin-left:-6px;
+    font-family: Cosmica;
+    font-size: 18px;
+}
+.delivery-by {
+    font-family: Cosmica;
+    font-size: 10px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.45;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    color: #c3c3c3;
+}
+.delivery-date {
+    font-family: Cosmica-Bold;
+    font-size: 15px;
+    font-stretch: normal;
+    font-weight: bold;
+    font-style: normal;
+    line-height: 1.76;
+    letter-spacing: normal;
+    color: #363636;
+}
+.place-order {
+    border-radius: 25px;
+    width: 260px;
+    height: 54px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.16);
+    border: none;
+    background-image: linear-gradient(to bottom, #ff59cc, #ff8edc 27%, #ff59cc 73%, #fc17f3);
+}
+.place-order:hover {
+    outline: none!important;
+}
+.place-order span {
+    font-family: Cosmica-Bold;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    text-transform: uppercase;
+    line-height: 1.39;
+    letter-spacing: normal;
+    text-align: center;
+    padding: 30px;
+
+    color: #ffffff;
+}
