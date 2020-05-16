@@ -10,6 +10,7 @@ import {GuardService} from '../../../services/gaurdService/guard.service';
 import {EncryptDataService} from '../../../services/encryption/encrypt-data.service';
 import {CacheService} from '../../../services/cacheService/cache.service';
 import {NotifyComponent} from '../../components/notify/notify.component';
+import {ScrollToService} from '@nicky-lenaers/ngx-scroll-to';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {NotifyComponent} from '../../components/notify/notify.component';
     GuardService,
     EncryptDataService,
     CacheService,
+    ScrollToService
   ],
   exports: [
     CommonModule,

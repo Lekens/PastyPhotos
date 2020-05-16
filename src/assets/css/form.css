@@ -1,41 +1,18 @@
-
-
-
-#checkout-overlay {
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(7, 7, 7, 0.81);
-    z-index: 999;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    cursor: pointer;
-}
-
-
-
-
-
-.login-sec {
+#checkout-overlay .login-sec {
     padding: 40px 0;
     position: relative;
     background-color: #ffffff;
 }
 
-.padding-x-30 {
+#checkout-overlay .padding-x-30 {
     padding-left: 30px;
     padding-right: 30px;
 }
-.hr-form {
+#checkout-overlay .hr-form {
     height: 10px;
 }
 
-.login-sec h2 {
+#checkout-overlay .login-sec h2 {
     font-family: Cosmica-Bold;
     font-size: 16px;
     text-transform: uppercase;
@@ -49,7 +26,7 @@
     margin-bottom: 30px;
 
 }
-.login-sec .label-input100 {
+#checkout-overlay .login-sec .label-input100 {
     font-family: Cosmica-Bold;
     font-size: 8px;
     text-transform: uppercase;
@@ -72,11 +49,11 @@
 }*/
 
 
-.login-sec .copy-text i {
+#checkout-overlay .login-sec .copy-text i {
     color: red;
 }
 
-.login-sec .copy-text a {
+#checkout-overlay .login-sec .copy-text a {
     color: red;
 }
 /*
@@ -95,19 +72,19 @@
 */
 
 
-.banner-text {
+#checkout-overlay .banner-text {
     width: 70%;
     position: absolute;
     bottom: 40px;
     padding-left: 20px;
 }
 
-.banner-text h2 {
+#checkout-overlay .banner-text h2 {
     color: #fff;
     font-weight: 600;
 }
 
-.banner-text h2:after {
+#checkout-overlay .banner-text h2:after {
     content: " ";
     width: 100px;
     height: 5px;
@@ -117,7 +94,7 @@
     border-radius: 3px;
 }
 
-.banner-text p {
+#checkout-overlay .banner-text p {
     color: #fff;
 }
 
@@ -125,7 +102,7 @@
 
 /* login start */
 
-.container-login100-form-btn {
+#checkout-overlay .container-login100-form-btn {
     margin: 0 auto;
     display: block;
     text-align: center;
@@ -134,7 +111,7 @@
 }
 
 
-.header-title {
+#checkout-overlay .header-title {
     font-family: Cosmica-Bold;
     text-transform: uppercase;
     font-size: 14px;
@@ -147,7 +124,7 @@
     color: #ff59cc;
 }
 
-tbody .th {
+#checkout-overlay tbody .th {
     font-family: Cosmica-Bold;
     font-size: 10px;
     font-weight: bold;
@@ -158,7 +135,7 @@ tbody .th {
     text-align: left;
     color: #363636;
 }
-tbody .td {
+#checkout-overlay tbody .td {
     font-family: Cosmica;
     font-size: 10px;
     font-weight: normal;
@@ -169,28 +146,28 @@ tbody .td {
     text-align: left;
     color: #363636;
 }
-.validate-input {
+#checkout-overlay .validate-input {
     position: relative;
 }
 
-.wrap-input100 {
+#checkout-overlay .wrap-input100 {
     width: 100%;
     position: relative;
     border-bottom: 1px solid #d9d9d9;
     margin-bottom: 2%;
 }
 
-input:focus {
+#checkout-overlay input:focus {
     border-color: transparent !important;
 }
 
-.input100:focus+.focus-input100::before {
+#checkout-overlay .input100:focus+.focus-input100::before {
     width: 100%;
 }
 
 
 
-.input100 {
+#checkout-overlay .input100 {
     font-size: 10px;
     /*color: #333333;*/
     /*line-height: 1.2;*/
@@ -214,12 +191,12 @@ input:focus {
 
 }
 
-input {
+#checkout-overlay input {
     outline: none;
     border: none;
 }
 
-.close-icon-box {
+#checkout-overlay .close-icon-box {
     top: .5%;
     left: 3.2%;
     width:16px;
@@ -229,13 +206,13 @@ input {
     border: 2px solid #ff59cc;
     border-radius: 50%
 }
-.close-icon-box div {
+#checkout-overlay .close-icon-box div {
     margin-top: -15px;
     margin-left:-6px;
     font-family: Cosmica;
     font-size: 18px;
 }
-.delivery-by {
+#checkout-overlay .delivery-by {
     font-family: Cosmica;
     font-size: 10px;
     font-weight: bold;
@@ -246,7 +223,7 @@ input {
     text-transform: uppercase;
     color: #c3c3c3;
 }
-.delivery-date {
+#checkout-overlay .delivery-date {
     font-family: Cosmica-Bold;
     font-size: 15px;
     font-stretch: normal;
@@ -256,7 +233,7 @@ input {
     letter-spacing: normal;
     color: #363636;
 }
-.place-order {
+#checkout-overlay .place-order {
     border-radius: 25px;
     width: 260px;
     height: 54px;
@@ -264,10 +241,10 @@ input {
     border: none;
     background-image: linear-gradient(to bottom, #ff59cc, #ff8edc 27%, #ff59cc 73%, #fc17f3);
 }
-.place-order:hover {
+#checkout-overlay .place-order:hover {
     outline: none!important;
 }
-.place-order span {
+#checkout-overlay .place-order span {
     font-family: Cosmica-Bold;
     font-size: 14px;
     font-weight: bold;

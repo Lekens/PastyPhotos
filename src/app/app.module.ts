@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {landingRouting} from './app.routing';
-import { AdminRoutesComponent } from './admin/admin-routes/admin-routes.component';
-import { OrdersComponent } from './admin/orders/orders.component';
-import { InitFrameComponent } from './users/init-frame/init-frame.component';
-import { HeaderComponent } from './shared/layouts/frames/header/header.component';
+import {SharedModules} from './shared/modules/shared/shared.module';
+import {environment as ENV } from '../environments/environment';
+import * as firebase from 'firebase/app';
+import 'firebase/storage';
+import {AngularCropperjsModule} from "angular-cropperjs";
+
+firebase.initializeApp(ENV.FIREBASE);
+firebase.analytics();
 
 @NgModule({
   declarations: [
@@ -15,6 +19,8 @@ import { HeaderComponent } from './shared/layouts/frames/header/header.component
   ],
   imports: [
     BrowserModule,
+    SharedModules,
+    AngularCropperjsModule,
     landingRouting.routes
   ],
   providers: [landingRouting.providers],

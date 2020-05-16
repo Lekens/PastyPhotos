@@ -185,4 +185,33 @@ export class UtilService {
       }
     });
   }
+  public validateImage(e, height, width, failCallback, successCallback) {
+    $('.cd-panel').css({'z-index': '0'});
+    console.log('Event ', (<HTMLInputElement>e.target).files[0]);
+    const fileUpload = (<HTMLInputElement>e.target).files[0];
+    console.log('File uplioad', fileUpload);
+    // Initiate the FileReader object.
+    const reader: FileReader = new FileReader();
+    // Read the contents of Image File.
+    reader.readAsDataURL(fileUpload);
+    reader.onload = function (et: Event) {
+      // Initiate the JavaScript Image object.
+      const image = new Image();
+      // Set the Base64 string return from FileReader as source.
+      image.src = <any>reader.result;
+      image.onload = function () {
+        // Determine the Height and Width.
+        const OutHeight = (<HTMLInputElement>this).height;
+        const OutWidth = (<HTMLInputElement>this).width;
+        if (OutHeight < height || OutWidth < width ) {
+          // error, image width cannot be less than, height less than
+          failCallback();
+          return false;
+        }
+        successCallback();
+        return true;
+      };
+    };
+
+  }
 }

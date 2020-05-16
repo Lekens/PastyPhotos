@@ -11,14 +11,14 @@ export const environment = {
   USERTOKEN: '4sW_udEk5FMqHZGsrPiykafaa973757067sW_uddEk5',
   PRIVATE_KEY: 'Rider-POInt-0f-Sale-hj6545tyhertyuew2345678888ujgfe323456788000000000000000iiiiiiiiijyyH35Yyr6790-tgh45678ij',
   FIREBASE: {
-    apiKey: 'AIzaSyDPdpPjkAWDgIPZ4KhjGODD_H9pS1Un9T8',
-    authDomain: 'letsfarm-33131.firebaseapp.com',
-    databaseURL: 'https://letsfarm-33131.firebaseio.com',
-    projectId: 'letsfarm-33131',
-    storageBucket: 'letsfarm-33131.appspot.com',
-    messagingSenderId: '913208119439',
-    appId: '1:913208119439:web:3453e749857279bbdc60fa',
-    measurementId: 'G-YH47P2JW92'
+    apiKey: 'AIzaSyAwznkdnqX3m-Jo9LGqoh5vBtI3OtEYdMM',
+    authDomain: 'pastyphotos.firebaseapp.com',
+    databaseURL: 'https://pastyphotos.firebaseio.com',
+    projectId: 'pastyphotos',
+    storageBucket: 'pastyphotos.appspot.com',
+    messagingSenderId: '437890546830',
+    appId: '1:437890546830:web:5f0cdaad088839dd4e1ddf',
+    measurementId: 'G-7D5HW2FCCD'
   },
   URL_VALIDATION:  /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi,
   // tslint:disable-next-line:max-line-length
@@ -26,6 +26,7 @@ export const environment = {
   SECRET_KEY: '4sW_udEk5FMqHZGsrPiykafaa973757067sW_uddEk5-Aroko-yuolalkanaFMqHZGsrPiykafaaMqHZGsrPiykafaatjqebjf',
   // tslint:disable-next-line:max-line-length
   SECRET_KEY_TOKEN: '4sW_udEk5FMqHZGsrPiykafaa973757067sW_uddEk5-Aroko-yulalkanaFMqHZGsrPiykafaaMqHZGsrPiykafaatjqebjf-2019-sidPOKJHj7ikj-o890pojrt9-2tred;sdfguytr08j-',
+  SECRET_USER_KEY: '4sW_udEk5FMqHZGsrPiykafaa973757067sW_pastyphotos-sidPOKJHj7ikj-o890pojrt9-2tred;sdfguytr08j-',
   SECRETENTITY: '4sW_udEk5FMqHZGsrPiykafaa973757067sW_uddEk5FsW_udEk5FMqHZGsrPiykafaaMqHZGsrPiykafaatjqebjf',
   // tslint:disable-next-line:max-line-length
   ACTION_KEY: '12384-09875poiuyty-987to890pojrt9-2976try-2020-1qsdidPOKJHj7ikj-o890pojrt9-2tred;sdfguytr08j-987to890pojrt9-2tred;sdfguytr08j-arokoyuolalekan',

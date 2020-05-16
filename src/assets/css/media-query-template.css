@@ -1,0 +1,492 @@
+/*
+ * Author: http://stuffandnonsense.co.uk/blog/about/hardboiled_css3_media_queries/
+ */
+
+
+@media only screen
+and (max-width : 200px) {
+  .css-1dkwqii {
+  top: 20.9%;
+  /*9.9 */
+    /*18.9*/
+}
+
+  .matt-top {
+    top: 20.5%;
+  }
+  .frame-container {
+    top: -30%;
+  }
+}
+@media only screen
+and (max-width : 280px) {
+  .css-1dkwqii {
+  top: 10.9%;
+  /*9.9 */
+    /*18.9*/
+}
+
+  .matt-top {
+    top: 13.5%;
+  }
+  .frame-container {
+    top: -30%;
+  }
+}
+@media only screen
+and (max-width : 319px) {
+  .css-1dkwqii {
+  top: 10.9%;
+  /*9.9 */
+    /*18.9*/
+}
+
+  .matt-top {
+    top: 13.5%;
+  }
+  .frame-container {
+    top: -30%;
+  }
+}
+
+@media only screen
+and (min-width : 320px) {
+  .css-1dkwqii {
+  top: 10.9%;
+  /*9.9 */
+    /*18.9*/
+}
+
+  .matt-top {
+    top: 13.5%;
+  }
+  .frame-container {
+    top: -30%;
+  }
+}
+@media only screen
+and (min-width : 321px) {
+  .css-1dkwqii {
+  top: 13.9%;
+  /*9.9 */
+}
+
+  .matt-top {
+    top: 15.9%;
+  }
+  .frame-container {
+    top: -30%;
+  }
+}
+@media only screen
+and (min-width : 360px) {
+  .css-1dkwqii {
+  top: 13.9%;
+  /*9.9 */
+}
+
+  .matt-top {
+    top: 15.9%;
+  }
+  .frame-container {
+    top: -30%;
+  }
+}
+@media only screen
+and (min-width : 375px) {
+  .css-1dkwqii {
+  top: 14.9%;
+  /*9.9 */
+}
+
+  .matt-top {
+    top: 16.9%;
+  }
+  .frame-container {
+    top: -37%;
+  }
+}
+@media only screen
+and (min-width : 375px) and (min-height : 667px) {
+  .css-1dkwqii {
+  top: 14.9%;
+  /*9.9 */
+}
+
+  .matt-top {
+    top: 16.9%;
+  }
+  .frame-container {
+    top: -30%;
+  }
+}
+@media only screen
+and (min-width : 375px) and (min-height : 812px) {
+  .css-1dkwqii {
+  top: 14.9%;
+  /*9.9 */
+
+}
+
+  .matt-top {
+    top: 16.9%;
+  }
+  .frame-container {
+    top: -37%;
+  }
+}
+@media only screen
+and (min-width : 411px) and (min-height : 731px) {
+  /* Styles */
+  .css-1dkwqii {
+    top: 16.9%;
+    /*9.9 */
+  }
+  .matt-top {
+    top: 18.5%;
+  }
+  .frame-container {
+    top: -30%;
+  }
+}
+
+
+@media only screen
+and (min-width : 411px) and (min-height : 823px) {
+  /* Styles */
+  .css-1dkwqii {
+    top: 16.9%;
+    /*9.9 */
+  }
+
+  .matt-top {
+    top: 18.5%;
+  }
+  .frame-container {
+    top: -34%;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+  /* Styles */
+
+
+
+  .filter-strip {
+    justify-content: inherit;
+  }
+  .selected-width {
+    width: 100% !important;
+    /*margin-left: -5.1%!important;*/
+  }
+  .top-60 {
+    top: 50%!important;
+  }
+}
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+  /* Styles */
+
+  /*.frame-container {
+    top: -30%;
+  }*/
+  .selected-width {
+    width: 100% !important;
+    /*margin-left: -5.1%!important;*/
+  }
+  .top-60 {
+    top: 60%!important;
+  }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 321px) {
+  /* Styles */
+
+ /* .frame-container {
+    top: -30%;
+  }
+*/
+  .filter-strip {
+    justify-content: inherit;
+  }
+  .selected-width {
+    width: 100% !important;
+    /*margin-left: -5.1%!important;*/
+  }
+  .top-60 {
+    top: 50%!important;
+  }
+}
+
+
+
+
+
+
+
+
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+  /* Styles */
+
+ /* .frame-container {
+    top: -30%;
+  }*/
+  .filter-strip {
+    justify-content: inherit;
+  }
+  .selected-width {
+    width: 100% !important;
+    /*margin-left: -5.1%!important;*/
+  }
+
+  .top-60 {
+    top: 70%!important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+  /* Styles */
+  .css-1dkwqii {
+    top: 5.5%;
+  }
+  .matt-top {
+    top: 7.2%;
+  }
+  .frame-container {
+    top: -45px;
+  }
+  .filter-strip {
+    justify-content: center;
+  }
+
+  .m-left {
+    padding-left: 8rem;
+  }
+  .selected-width {
+    width: 100% !important;
+    margin-left: -6.1%!important;
+  }
+  .top-60 {
+    top: 30% !important;
+  }
+}
+
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+  /* Styles */
+  .css-1dkwqii {
+    top: 5.5%;
+  }
+
+  .matt-top {
+    top: 7.2%;
+  }
+  .frame-container {
+    top: -60%!important;
+  }
+  .filter-strip {
+    justify-content: center;
+  }
+
+  .m-left {
+    padding-left: 8rem;
+  }
+  .selected-width {
+    width: 100% !important;
+    margin-left: -7.1%!important;
+  }
+  .top-60 {
+    top: 30% !important;
+  }
+}
+
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+  /* Styles */
+  .css-1dkwqii {
+    top: 5.5%;
+  }
+
+  .matt-top {
+    top: 7.2%;
+  }
+  .frame-container {
+    top: -60%!important;
+  }
+  .filter-strip {
+    justify-content: center;
+  }
+  .m-left {
+    padding-left: 8rem;
+  }
+  .selected-width {
+    width: 100% !important;
+    margin-left: -7.1%!important;
+  }
+  .top-60 {
+    top: 30%!important;
+  }
+}
+
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1024px) {
+  /* Styles */
+  .css-1dkwqii {
+    top: 9.9%;
+    /*9.9 */
+  }
+
+  .matt-top {
+    top: 10.8%;
+  }
+  .frame-container {
+    top: -45px;
+  }
+  .filter-strip {
+    justify-content: center;
+  }
+  .m-right {
+    margin-right: 3rem!important;
+  }
+  .selected-width {
+    width: 100% !important;
+    margin-left: -5.1%!important;
+  }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+  /* Styles */
+  .css-1dkwqii {
+    top: 21.5%;
+  }
+
+  .matt-top {
+    top: 23.5%;
+  }
+  .frame-container {
+    top: -45px;
+  }
+  .filter-strip {
+    justify-content: center;
+  }
+  .m-left {
+    padding-left: 7rem;
+  }
+  .selected-width {
+    width: 100% !important;
+    margin-left: -6.1%!important;
+  }
+  .MuiDrawer-action-selected {
+    /*top: auto!important;*/
+  }
+  .top-60 {
+    top: 50%!important;
+  }
+
+
+}
+@media only screen
+and (min-width : 1280px) and (min-height : 800px) {
+  .css-1dkwqii {
+    top: 8.5%;
+  }
+
+  .matt-top {
+    top: 10.5%;
+  }
+  .frame-container {
+    top: -45%;
+  }
+}
+@media only screen
+and (min-width : 1280px) and (min-height : 950px) {
+  .css-1dkwqii {
+    top: 12.5%;
+  }
+  .matt-top {
+    top: 13.5%;
+  }
+  .frame-container {
+    top: -45%;
+  }
+}
+
+@media only screen
+and (min-width : 1440px) and (min-height : 900px) {
+  .css-1dkwqii {
+    top: 10.5%;
+  }
+  .matt-top {
+    top: 12.5%;
+  }
+  .frame-container {
+    top: -45%;
+  }
+}
+
+
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+  /* Styles */
+  .css-1dkwqii {
+    top: 31.5%;
+  }
+  .frame-container {
+    top: -45px;
+  }
+  .filter-strip {
+    justify-content: center;
+  }
+  .selected-width {
+    width: 100% !important;
+    margin-left: -5.1%!important;
+  }
+}
+
+/*
+@media only screen and (min-width: 1224px) {
+  .frame-container {
+    top: -45%;
+  }
+}
+*/

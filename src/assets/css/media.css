@@ -1,17 +1,27 @@
 
-/*
-@media screen and (max-width: 768px) {
 
-    .filter-strip {
-        justify-content: center;
-    }
-}
-*/
 
 @media screen and (max-width: 767px) {
+
+
+  .customize-top-ii {
+    top: -45px;
+  }
+  .customize-top-container {
+    top: -45px;
+  }
     .footer-bottom {
         text-align: center;
     }
+  .MuiDialog-paper {
+    border-radius: 0!important;
+
+    overflow-y: auto;
+  }
+  .special-modal {
+    width: auto;
+  }
+
     #features {
         padding-top: 100px;
         padding-bottom: 70px; }
@@ -38,19 +48,44 @@
         padding-top: 70px;
         padding-bottom: 70px; }
 
-    .filter-strip {
+   /* .filter-strip {
         justify-content: inherit;
-    }
+    }*/
 
-    .selected-width {
-        width: 100% !important;
-    }
+
 }
 
+@media screen and (max-width: 1024px) {
+  .customize-top-ii {
+    top: -40px;
+  }
+  .customize-top-container {
+    top: -40px;
+  }
+}
+
+
 @media screen and (min-width: 1024px) {
-    .filter-strip {
+
+  /*.MuiDrawer-action-selected {
+    top: auto!important;
+  }*/
+  .customize-top-ii {
+    top: -20px;
+  }
+  .customize-top-container {
+    top: -20px;
+  }
+  .MuiDialog-paper {
+    border-radius: 10px!important;
+    overflow-y: hidden;
+  }
+  .special-modal {
+    width: 650px!important;
+  }
+    /*.filter-strip {
         justify-content: center;
-    }
+    }*/
     .checkout-btn {
         padding: 18px 85px;
     }
@@ -58,10 +93,7 @@
     .checkout-btn-div {
         margin-left: -30px!important;
     }
-    .selected-width {
-        width: 78% !important;
-        margin-left: 7.5%;
-    }
+
 
 
 }
@@ -69,17 +101,31 @@
 @media screen and (max-width: 320px) {
 
 
-    .selected-width {
-        width: 100% !important;
-    }
+
     #contact-us {
         display: none;
     }
+}
+@media screen and (min-width: 320px) {
+
+/*
+  .customize-top-ii {
+    top: 20%;
+  }
+  .customize-top-container {
+    top: 20%;
+  }*/
 }
 
 
 
 @media screen and (max-width: 991px) {
+  .customize-top-ii {
+    top: -35%;
+  }
+  .customize-top-container {
+    top: -35%;
+  }
     .navbar-header {
         float: none; }
     .navbar-toggle {
@@ -110,11 +156,9 @@
     .checkout-btn {
         padding: 15px 30px;
     }
-    .filter-strip {
+    /*.filter-strip {
         justify-content: inherit;
-    }
+    }*/
 
-    .selected-width {
-        width: 100% !important;
-    }
+
 }

@@ -21,26 +21,22 @@
 
       <div class="bottom-comp">
         <!--<div class="text-center frame-styles" style="margin-bottom: 40px!important;">Frame styles</div>-->
-
         <div class="filter-strip">
-          <div class="filter-button"><img class="filter-image" src="assets/img/classicIcon.svg"><div class="filter-name">Classic</div></div>
+          <div class="filter-button selected" id="classic" (click)="frameStyle('classic', 'black', 'matting')"><img class="filter-image" src="assets/img/classicIcon.svg"><div class="filter-name">Classic</div></div>
 
-          <div class="filter-button"><img class="filter-image" src="assets/img/everIcon.svg"><div class="filter-name">Antique</div></div>
+          <div class="filter-button" id="antique" (click)="frameStyle('antique', 'white', 'matting')"><img class="filter-image" src="assets/img/everIcon.svg"><div class="filter-name">Antique</div></div>
 
-          <div class="filter-button"><img class="filter-image" src="assets/img/boldIcon.svg"><div class="filter-name">Bold</div></div>
+          <div class="filter-button" id="bold" (click)="frameStyle('bold', 'black', '')"><img class="filter-image" src="assets/img/boldIcon.svg"><div class="filter-name">Bold</div></div>
 
-          <div class="filter-button selected">
+          <div class="filter-button" id="clean" (click)="frameStyle('clean', 'white', '')">
             <img class="filter-image" src="assets/img/cleanIcon.svg">
             <div class="filter-name">Clean</div></div>
         </div>
       </div>
 
-      <div class="container mr-5 ">
+      <div class="container m-left" *ngIf="tiles.length === 0">
         <div class="mt-5">
-
-          <!--mx-md-5 mx-sm-2-->
-          <div class="selected-width  bg-white upload-holder" >
-
+          <div class="selected-width bg-white upload-holder" >
             <div class="" style="padding-top: 58px;">
               <div class="text-center">
                 <div  style="width: 240px;display: inline-block;">
@@ -55,14 +51,14 @@
 
 
 
-              <div class="text-center" style="padding-top: 30px;">
+              <div class="text-center" style="padding-top: 30px;" (click)="triggerUploader()">
                 <div class="SquareUploadButton right-side">
                   <div class="plus-icon">
                     <svg viewBox="0 0 37.76 38.93">
                       <path class="plus-shape" d="M21.22,0V17.2H37.76v4.39H21.22V38.93H16.54V21.59H0V17.2H16.54V0Z"></path>
                     </svg>
                   </div>
-                  <img src="assets/img/Upload%20icon@3x.png" class="upload-icon">
+                  <img src="assets/img/Uploadicon@3x.png" class="upload-icon">
 
                 </div>
 
@@ -86,8 +82,97 @@
         <div class="mt-5 text-center" >
           <div class="checkout-btn-div" style="display: inline-block;">
                       <span>
-                          <!--//disabled-->
                           <button class="checkout-btn" disabled><span>checkout</span></button>
+                      </span>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="container m-left" *ngIf="tiles.length">
+        <div class="mt-5">
+
+          <!--mx-md-5 mx-sm-2-->
+          <div class="selected-width bg-white upload-holder" >
+
+            <div class="" style="padding-top: 58px;">
+              <div class="text-center">
+                <div  style="width: 240px;display: inline-block;">
+                  <div class="upload-box-text">
+                    upload at least 3 photos from your device
+                  </div>
+                </div>
+              </div>
+              <div class="tiles-strip">
+                <div class="SquareUploadButton left-side" (click)="triggerUploader()">
+                  <div class="plus-icon">
+                    <svg viewBox="0 0 37.76 38.93">
+                      <path class="plus-shape" d="M21.22,0V17.2H37.76v4.39H21.22V38.93H16.54V21.59H0V17.2H16.54V0Z"></path>
+                    </svg>
+                  </div>
+                  <img src="assets/img/Uploadicon@3x.png" class="upload-icon">
+
+                </div>
+
+                <div class="tile" *ngFor="let tile of tiles;let i = index"
+                     [id]="'tile-' + i" (click)="popupPresentation(tile, i, 'showActions')">
+                  <!--<div class="tile-base"></div>-->
+                  <div class="preview-tile preview">
+                    <img alt="" class="preview-image" [src]="tile"
+                         style="opacity: 1; height: 100%;width: 100%;"></div>
+                  <div class="tile-frame">
+                    <img class="frame-svg frame hidden black-frame" src="assets/img/black.svg">
+                    <img class="frame-svg frame hidden white-frame" src="assets/img/white.svg">
+                    <img class="frame-svg frame hidden none-frame" src="assets/img/none.svg">
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="SquareUploadButton right-side" (click)="triggerUploader()">
+                  <div class="plus-icon">
+                    <svg viewBox="0 0 37.76 38.93">
+                      <path class="plus-shape" d="M21.22,0V17.2H37.76v4.39H21.22V38.93H16.54V21.59H0V17.2H16.54V0Z"></path>
+                    </svg>
+                  </div>
+
+                  <img src="assets/img/Uploadicon@3x.png" class="upload-icon">
+                </div>
+              </div>
+
+
+
+
+
+
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+        <div class="mt-5 text-center" >
+          <div class="checkout-btn-div" style="display: inline-block;">
+                      <span>
+                          <button class="checkout-btn" [disabled]="tiles.length < 3" (click)="checkoutCart()"><span>checkout</span></button>
                       </span>
           </div>
         </div>
@@ -101,7 +186,304 @@
 
     </div>
 
+
+
+
+
+
+
+
+
+
+
   </div> <!-- END container-->
 </section> <!-- END steps-->
 
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div>
+          <div class="title" (click)="initialCropper()">Adjust</div>
+
+          <div id="cropperNosw"></div></div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<div id="adjust-overlay" class="d-none pasty-overlay">
+  <div class="" style="min-height: 100%!important;height: auto">
+
+    <div class="container px-5">
+      <div class="special-modal offset-md-3">
+      <div class="MuiDialog-container py-md-5 py-sm-0" tabindex="-1">
+
+
+
+        <div *ngIf="view.showActions" class="MuiPaper-root MuiDrawer-paper adjust-tile-drawer MuiDrawer-paperAnchorBottom MuiDrawer-action-selected MuiPaper-elevation16 text-uppercase top-60" tabindex="-1"
+             style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;">
+          <div class="text-center mb-4" style="cursor: pointer" (click)="closeOverlay()">
+            <div style="display: inline-block">
+              <div style="width: 30px; height: 30px;border-radius: 50%;border: 2px solid #ffffff;color: #ffffff;padding: 0px 5px;text-align: center">
+                <span style="font-size: 33px;">&times;</span></div>
+
+            </div>
+          </div>
+          <div class="adjust-tile-buttons" style="">
+            <!--popupPresentation(selectedTileImage.image, selectedTileImage.index, 'adjustView');-->
+          <div class="dialog-button pink-type" (click)="popupPresentation(selectedTileImage.image, selectedTileImage.index, 'adjustView');">Adjust Image</div>
+          <div class="dialog-button highlighted" (click)="deleteItem(selectedTileImage)">Delete</div>
+        </div>
+        </div>
+
+
+        <div *ngIf="view.badImage" class="warning-drawer MuiPaper-root MuiDrawer-paper adjust-tile-drawer MuiDrawer-paperAnchorBottom MuiPaper-elevation16 text-uppercase" tabindex="-1"
+             style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;">
+
+          <div class="text-center mb-4">
+            <div>
+              <img src="assets/img/CautionSign.png">
+            <div class="low-image-caution">Low Image Quality</div></div>
+          </div>
+          <div class="warning-content" style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;">
+            <div class="basic-dialog">
+              <div class="dialog-content">
+                <!--<div class="dialog-title">Low Image Quality</div>-->
+                <img class="dialog-image" [src]="badImage">
+            <div class="dialog-text">The selected image is very small and might make a blurry print</div>
+              </div></div>
+          </div>
+
+
+          <div class="text-center container  px-sm-0 px-md-5" style="">
+          <div class="row">
+            <div class="col-6"><button class="btn btn-lg remove-btn" (click)="removeBadImage()"><span>REMOVE</span></button></div>
+          <div class="col-6"><button class="btn btn-lg keep-btn" (click)="keepBadImage()"><span>KEEP</span></button></div>
+          </div>
+        </div>
+        </div>
+
+
+        <div *ngIf="view.adjustView" class="MuiDialog-paper
+         pasty-dialog-paper MuiDialog-paperScrollPaper
+          MuiDialog-paperWidthSm MuiDialog-paperFullScreen
+           pasty-dialog-paper-fullscreen">
+
+
+
+
+
+
+
+
+
+
+
+
+          <div  class="tile-cropper" >
+            <div class="top-bar-container no-bottom-margin">
+              <div class="top-bar">
+                <div class="left-comp">
+                  <div class="CloseButton">
+                    <button type="button" class="close" data-dismiss="modal" (click)="closeOverlay()">×</button>
+                  </div>
+                </div>
+                <div class="title">Adjust</div>
+                <div class="right-comp"><div class="DoneButton">Done</div></div>
+              </div>
+            </div>
+            <div class="cropper-content">
+
+              <div class="cropper-text">PINCH AND ZOOM</div>
+
+              <!--css-1dkwqii-->
+              <div class="cropper-container-style css-command-pos" [ngClass]="selectedTileImage.tileProp.mat === 'matting' ? 'matt-top' : 'css-1dkwqii'">
+               <div class="cropper-image-style css-ebdd77 "
+                    style="position: absolute;opacity: 1; background-color: transparent;transform: translate(0px, 0px) rotate(0deg) scale(1);" id="cropperNow" ></div>
+              </div>
+
+              <div class="frame-container" >
+                <div class="tile-frame">
+                  <img class="frame" [ngClass]="selectedTileImage.tileProp.color === 'black' ? '' : 'hidden'" src="assets/img/black.svg" />
+                  <img class="frame" [ngClass]="selectedTileImage.tileProp.color === 'white' ? '' : 'hidden'" src="assets/img/white.svg" />
+
+                </div>
+              </div>
+
+
+            </div>
+            <div class="d-none d-sm-none d-lg-block ">
+              <div class="position-absolute offset-md-5" style="bottom: 5%;">
+              <div class="d-inline-block rotate-image">
+                <span class="fa fa-rotate-right pr-5" (click)="rotateRight()"></span>
+
+                <span class="fa fa-rotate-left pl-5" (click)="rotateLeft()"></span>
+
+
+
+              </div>
+            </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div></div>
+
+
+  </div>
+
+
+</div>
+
+
+
+
+
+<div id="checkout-overlay" class="pasty-overlay d-none">
+  <div class="row" style="min-height: 100%!important;height: auto">
+    <div class="col-md-8" (click)="closeOverlay()"></div>
+    <div class="col-md-4 login-sec">
+      <div class="text-danger position-absolute font-weight-bold close-icon-box" (click)="closeOverlay()">
+        <div class="text-dark " style="">&times;</div>
+      </div>
+      <h2 class="text-center">Checkout</h2>
+
+      <hr class="hr-form">
+
+      <h4 class="header-title"
+          data-toggle="collapse" href="#collapseShippingDetails" role="button" aria-expanded="false" aria-controls="collapseShippingDetails">
+        Shipping details
+      </h4>
+
+
+      <form class="w-100 text-center">
+
+        <div class="padding-x-30 pb-3 collapse show" id="collapseShippingDetails" >
+          <div class="wrap-input100 validate-input">
+            <span class="label-input100">Full Name</span>
+            <input class="input100" type="text" name="fullname"
+                   placeholder="Enter Full Name">
+
+          </div>
+
+          <div class="wrap-input100 validate-input">
+            <span class="label-input100">Email</span>
+            <input class="input100" type="email" name="pass" placeholder="Enter valid email address">
+
+          </div>
+          <div class="wrap-input100 validate-input">
+            <span class="label-input100">Mobile Number</span>
+            <input class="input100" type="text" name="phone" placeholder="Enter valid phone number">
+
+          </div>
+          <div class="wrap-input100 validate-input">
+            <span class="label-input100">Address</span>
+            <input class="input100" type="text" name="address" placeholder="Enter address">
+
+          </div>
+          <div class="wrap-input100 validate-input">
+            <span class="label-input100">City</span>
+            <input class="input100" type="text" name="city" placeholder="Enter city">
+
+          </div>
+          <div class="wrap-input100 validate-input">
+            <span class="label-input100">Postal code</span>
+            <input class="input100" type="text" name="postal_code" placeholder="Enter postal code">
+
+          </div>
+          <div class="wrap-input100 validate-input">
+            <span class="label-input100">State/Province</span>
+            <input class="input100" type="text" name="state_province" placeholder="Enter state/province">
+
+          </div>
+          <div class="wrap-input100 validate-input">
+            <span class="label-input100">Country</span>
+            <input class="input100" type="text" name="country" placeholder="Enter country">
+
+          </div>
+        </div>
+
+        <hr class="hr-form">
+
+
+        <h4 class="header-title"
+            data-toggle="collapse" href="#collapseBagItems" role="button" aria-expanded="false" aria-controls="collapseBagItems">
+          Bag Items
+        </h4>
+
+        <div class="padding-x-30 pb-3 collapse show w-100" id="collapseBagItems" >
+
+          <div class="table-responsive">
+            <table class="table table-borderless text-left text-uppercase">
+              <tbody>
+              <tr>
+                <td>3 Tiles for</td>
+                <td>NGN 18,500</td>
+              </tr>
+              <tr>
+                <td>1 additional Tile for</td>
+                <td>NGN 3,500</td>
+              </tr>
+              <tr>
+                <th>4 tiles in Total</th>
+                <th>NGN 18,500</th>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+        <hr class="hr-form">
+
+
+
+        <div class="padding-x-30 pb-3 w-100">
+          <div class="delivery-by pt-3">Delivery by</div>
+          <div class="delivery-date py-3">20/08/2020</div>
+          <div class="container-login100-form-btn">
+            <div class="">
+              <button type="submit" class="place-order">
+                <span>Place Order</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+      </form>
+
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+
+<input type="file" id="fileUploader" accept="image/*" class="input-file" *ngIf="uploadImageToggle" (change)="validateImage($event);">
 

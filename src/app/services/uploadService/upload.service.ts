@@ -6,7 +6,7 @@ import {Upload} from '../../models/upload';
   providedIn: 'root'
 })
 export class UploadService {
-  private basePath = '/letsfarm_images';
+  private basePath = '/pasty_photos_user_images';
   constructor() { }
   public uploadB64 (upload, dataObject: object, callback: any, key: string) {
     const storageRef = firebase.storage().ref();
@@ -38,8 +38,9 @@ export class UploadService {
       }
     );
   }
-  public uploadBlob (upload: Upload, dataObject: object, callback: any, key: string) {
+  public uploadBlob (upload: Upload, dataObject: any, callback: any, index: number) {
     const storageRef = firebase.storage().ref();
+    console.log('UPLOAD ', upload);
     const uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) =>  {
@@ -55,8 +56,7 @@ export class UploadService {
         uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
           console.log('File available at', downloadURL);
           // upload success
-          // upload.url = uploadTask.snapshot.downloadURL;
-          dataObject[key] = downloadURL;
+          dataObject[index] = downloadURL;
           upload.url = downloadURL;
           callback(dataObject);
           // upload.name = upload.file.name;

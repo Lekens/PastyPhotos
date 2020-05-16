@@ -36,7 +36,7 @@
      Version: 1.0.0
         Tags: Beborn
  Text Domain: Beborn
- Description: Our Beborn theme is clean designed for clarity. Beborn simple, 
+ Description: Our Beborn theme is clean designed for clarity. Beborn simple,
               straightforward typography is readable on a  wide variety of screen sizes,
               and suitable for multiple languages. We designed it using a mobile-first approach,
               meaning your content takes center-stage, regardless of whether your visitors arrive
@@ -1124,3 +1124,7 @@ h1, h2 {
 
 
 
+.custom-box {
+  border-radius: 25px;
+  overflow: hidden;
+}

@@ -6,7 +6,16 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "assets/datatables/datatables.net-bs4/css/dataTables.bootstrap4.min.css";
 @import "assets/datatables/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css";
+@import "~croppie/croppie.css";
 @import "assets/css/style.css";
 @import "assets/css/styles.css";
+@import "assets/css/form.css";
 @import "assets/css/frames.css";
 @import "assets/css/media.css";
+@import "assets/css/media-query-template.css";
+
+
+.pink-type {
+  background-color: #ff59cc;
+  color: #ffffff;
+}

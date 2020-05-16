@@ -5,11 +5,11 @@ import * as firebase from 'firebase';
 })
 export class DeleteService {
 
-  private basePath = '/letsfarm_images';
+  private basePath = '/pasty_photos_user_images';
   constructor() { }
   public deleteImages(file) {
     const storageRef = firebase.storage().ref();
-    const deleteTask = storageRef.child(`letsfarm_images/${file}`);
+    const deleteTask = storageRef.child(`pasty_photos_user_images/${file}`);
     deleteTask.delete().then(() => { }).catch(() => { });
   }
 }
