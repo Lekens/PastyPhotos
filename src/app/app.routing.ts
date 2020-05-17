@@ -5,6 +5,8 @@ import {AdminRoutesComponent} from './admin/admin-routes/admin-routes.component'
 import {OrdersComponent} from './admin/orders/orders.component';
 import {GuardService} from './services/gaurdService/guard.service';
 import {HeaderComponent} from "./shared/layouts/frames/header/header.component";
+import {UserService} from "./services/api-handlers/userService/user.service";
+import {ApiService} from "./services/api/api.service.";
 
 export interface IRouting {
   routes: ModuleWithProviders;
@@ -15,8 +17,8 @@ export interface IRouting {
 
 const landingRoutes: Routes = [
   {path: '', component: InitFrameComponent, pathMatch: 'full'},
-
-  {path: 'init-frame', component: InitFrameComponent},
+  {path: 'build-frame', component: InitFrameComponent},
+  {path: 'build-frame/:orderId', component: InitFrameComponent},
   {path: 'admin', loadChildren: './shared/modules/super-user/super-user.module#SuperUserModule'},
   {path: '**', component: InitFrameComponent},
 ];
@@ -28,7 +30,7 @@ export const landingRouting: IRouting = {
     HeaderComponent
   ],
   entryComponent: [],
-  providers: []
+  providers: [UserService, ApiService]
 };
 
 

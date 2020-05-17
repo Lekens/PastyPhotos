@@ -7,7 +7,9 @@ import {SharedModules} from './shared/modules/shared/shared.module';
 import {environment as ENV } from '../environments/environment';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
-import {AngularCropperjsModule} from "angular-cropperjs";
+import 'firebase/analytics';
+import {HttpClientModule} from '@angular/common/http';
+// import {AngularCropperjsModule} from "angular-cropperjs";
 
 firebase.initializeApp(ENV.FIREBASE);
 firebase.analytics();
@@ -20,7 +22,8 @@ firebase.analytics();
   imports: [
     BrowserModule,
     SharedModules,
-    AngularCropperjsModule,
+    HttpClientModule,
+    // AngularCropperjsModule,
     landingRouting.routes
   ],
   providers: [landingRouting.providers],

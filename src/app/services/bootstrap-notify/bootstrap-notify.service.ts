@@ -10,7 +10,7 @@ export class BootstrapNotifyService {
   private options = {
     type: null,
     // mouse_over: 'pause',
-    delay: 5000,
+    delay: 7000,
     z_index: 999999999999999999,
     showProgressbar: false,
     allow_dismiss: true,

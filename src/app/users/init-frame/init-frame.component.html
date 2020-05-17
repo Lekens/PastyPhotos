@@ -2,9 +2,22 @@
 <app-header></app-header>
 
 <section id="features">
+
+
   <div class="">
     <div class="container-fluid" >
       <div class="container mb-3">
+
+        <div class="text-center" *ngIf="globalLoading">
+          <div id="global-overlay">
+            <div id="">
+              <span class="loader-icon fa fa-spin fa-spinner fa-3x text-white">
+
+              </span>
+            </div>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-2">
             <a href="javascript:void(0)" (click)="goBack();"><img src="assets/img/logo/backicon.png" width="20"></a>
@@ -79,7 +92,7 @@
 
         </div>
 
-        <div class="mt-5 text-center" >
+        <div class="mt-5 text-center m-l--50" >
           <div class="checkout-btn-div" style="display: inline-block;">
                       <span>
                           <button class="checkout-btn" disabled><span>checkout</span></button>
@@ -118,7 +131,7 @@
                 <div class="tile" *ngFor="let tile of tiles;let i = index"
                      [id]="'tile-' + i" (click)="popupPresentation(tile, i, 'showActions')">
                   <!--<div class="tile-base"></div>-->
-                  <div class="preview-tile preview">
+                  <div class="preview-tile preview" [id]="'preview-no-' + i">
                     <img alt="" class="preview-image" [src]="tile"
                          style="opacity: 1; height: 100%;width: 100%;"></div>
                   <div class="tile-frame">
@@ -169,7 +182,7 @@
 
         </div>
 
-        <div class="mt-5 text-center" >
+        <div class="mt-5 text-center m-l--50" >
           <div class="checkout-btn-div" style="display: inline-block;">
                       <span>
                           <button class="checkout-btn" [disabled]="tiles.length < 3" (click)="checkoutCart()"><span>checkout</span></button>
@@ -198,37 +211,6 @@
 
   </div> <!-- END container-->
 </section> <!-- END steps-->
-
-
-<!-- The Modal -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        <div>
-          <div class="title" (click)="initialCropper()">Adjust</div>
-
-          <div id="cropperNosw"></div></div>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
 
 
 <div id="adjust-overlay" class="d-none pasty-overlay">
@@ -309,7 +291,10 @@
                   </div>
                 </div>
                 <div class="title">Adjust</div>
-                <div class="right-comp"><div class="DoneButton">Done</div></div>
+                <div class="right-comp">
+                  <div class="DoneButton" (click)="cropImage()" *ngIf="!loaders.loading">Done</div>
+                  <div class="DoneButton" *ngIf="loaders.loading"><span class="fa fa-spin fa-spinner fa-2x"></span></div>
+                </div>
               </div>
             </div>
             <div class="cropper-content">
@@ -379,56 +364,66 @@
       </h4>
 
 
-      <form class="w-100 text-center">
+      <form class="w-100 text-center" #checkoutForm="ngForm" (ngSubmit)="checkOutOrder()">
 
         <div class="padding-x-30 pb-3 collapse show" id="collapseShippingDetails" >
           <div class="wrap-input100 validate-input">
             <span class="label-input100">Full Name</span>
-            <input class="input100" type="text" name="fullname"
+            <input class="input100" type="text" name="fullname" #full_name="ngModel"
+                   [(ngModel)]="checkoutOrder.full_name" [ngModelOptions]="{standalone: true}"
                    placeholder="Enter Full Name">
 
           </div>
 
           <div class="wrap-input100 validate-input">
             <span class="label-input100">Email</span>
-            <input class="input100" type="email" name="pass" placeholder="Enter valid email address">
+            <input class="input100" type="email" name="pass" placeholder="Enter valid email address" #email="ngModel"
+                   [(ngModel)]="checkoutOrder.email" [ngModelOptions]="{standalone: true}">
 
           </div>
           <div class="wrap-input100 validate-input">
             <span class="label-input100">Mobile Number</span>
-            <input class="input100" type="text" name="phone" placeholder="Enter valid phone number">
+            <input class="input100" type="text" name="phone" placeholder="Enter valid phone number" #phone_number="ngModel"
+                   [(ngModel)]="checkoutOrder.phone_number" [ngModelOptions]="{standalone: true}">
 
           </div>
           <div class="wrap-input100 validate-input">
             <span class="label-input100">Address</span>
-            <input class="input100" type="text" name="address" placeholder="Enter address">
+            <input class="input100" type="text" name="address" placeholder="Enter address"
+                   [(ngModel)]="checkoutOrder.address" [ngModelOptions]="{standalone: true}">
 
           </div>
           <div class="wrap-input100 validate-input">
             <span class="label-input100">City</span>
-            <input class="input100" type="text" name="city" placeholder="Enter city">
+            <input class="input100" type="text" name="city" placeholder="Enter city"
+                   [(ngModel)]="checkoutOrder.city" [ngModelOptions]="{standalone: true}">
 
           </div>
           <div class="wrap-input100 validate-input">
             <span class="label-input100">Postal code</span>
-            <input class="input100" type="text" name="postal_code" placeholder="Enter postal code">
+            <input class="input100" type="text" name="postal_code" placeholder="Enter postal code"
+                   [(ngModel)]="checkoutOrder.postal_code" [ngModelOptions]="{standalone: true}">
 
           </div>
           <div class="wrap-input100 validate-input">
             <span class="label-input100">State/Province</span>
-            <input class="input100" type="text" name="state_province" placeholder="Enter state/province">
+            <input class="input100" type="text" name="state_province" placeholder="Enter state/province"
+                   [(ngModel)]="checkoutOrder.state_province" [ngModelOptions]="{standalone: true}">
 
           </div>
           <div class="wrap-input100 validate-input">
             <span class="label-input100">Country</span>
-            <input class="input100" type="text" name="country" placeholder="Enter country">
+            <input class="input100" type="text" name="country" placeholder="Enter country"
+                   [(ngModel)]="checkoutOrder.country" [ngModelOptions]="{standalone: true}">
 
           </div>
         </div>
 
+
         <hr class="hr-form">
 
-
+        <!--<pre>{{checkoutOrder | json }}</pre>
+-->
         <h4 class="header-title"
             data-toggle="collapse" href="#collapseBagItems" role="button" aria-expanded="false" aria-controls="collapseBagItems">
           Bag Items
@@ -441,15 +436,15 @@
               <tbody>
               <tr>
                 <td>3 Tiles for</td>
-                <td>NGN 18,500</td>
+                <td>{{checkoutOrder?.amount_for_three | currency: 'NGN '}}</td>
+              </tr>
+              <tr *ngIf="checkoutOrder.number_of_frames > 3">
+                <td>{{checkoutOrder.extra_num}} additional Tile for</td>
+                <td>{{checkoutOrder?.extra_amount | currency: 'NGN '}}</td>
               </tr>
               <tr>
-                <td>1 additional Tile for</td>
-                <td>NGN 3,500</td>
-              </tr>
-              <tr>
-                <th>4 tiles in Total</th>
-                <th>NGN 18,500</th>
+                <th>{{checkoutOrder?.number_of_frames}} tiles in Total</th>
+                <th>{{checkoutOrder?.total_amount | currency: 'NGN '}}</th>
               </tr>
               </tbody>
             </table>
@@ -462,11 +457,14 @@
 
         <div class="padding-x-30 pb-3 w-100">
           <div class="delivery-by pt-3">Delivery by</div>
-          <div class="delivery-date py-3">20/08/2020</div>
+          <div class="delivery-date py-3">{{checkoutOrder?.delivery_date}}</div>
           <div class="container-login100-form-btn">
             <div class="">
-              <button type="submit" class="place-order">
+              <button  *ngIf="!loaders.saving" type="submit" class="place-order" [disabled]="full_name.errors || email.errors || phone_number.errors">
                 <span>Place Order</span>
+              </button>
+              <button *ngIf="loaders.saving" type="reset" disabled class="place-order">
+                <span>Loading&nbsp;<i class="fa fa-spin fa-spinner"></i></span>
               </button>
             </div>
           </div>
@@ -480,6 +478,9 @@
 
 
 </div>
+
+
+
 
 
 

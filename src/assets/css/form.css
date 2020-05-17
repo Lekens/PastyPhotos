@@ -258,3 +258,22 @@
 
     color: #ffffff;
 }
+
+.place-order:hover span {
+  display:none
+}
+
+.place-order:hover:before {
+  content:"Pay Now";
+  font-family: Cosmica-Bold;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  text-transform: uppercase;
+  line-height: 1.39;
+  letter-spacing: normal;
+  text-align: center;
+  padding: 30px;
+  color: #ffffff;
+}

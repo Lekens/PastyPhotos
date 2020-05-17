@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL: 'https://api.pastyphotos.com/api',
+  // API_URL: 'https://pasty-photos.herokuapp.com/api',
+  API_URL: 'http://localhost:8070/api',
   API_VERSION: 'v1',
   JWT_KEY: '78888ujgfe3234567880000000000$&^%$0ToKE',
   TOKEN: 'hj6545tyhertyuew2345678888ujgfe3234567880000000000$&^%$0ToKENiiijyyH35Yyr6790-tgh45678ij',
@@ -29,8 +30,8 @@ export const environment = {
   SECRET_USER_KEY: '4sW_udEk5FMqHZGsrPiykafaa973757067sW_pastyphotos-sidPOKJHj7ikj-o890pojrt9-2tred;sdfguytr08j-',
   SECRETENTITY: '4sW_udEk5FMqHZGsrPiykafaa973757067sW_uddEk5FsW_udEk5FMqHZGsrPiykafaaMqHZGsrPiykafaatjqebjf',
   // tslint:disable-next-line:max-line-length
-  ACTION_KEY: '12384-09875poiuyty-987to890pojrt9-2976try-2020-1qsdidPOKJHj7ikj-o890pojrt9-2tred;sdfguytr08j-987to890pojrt9-2tred;sdfguytr08j-arokoyuolalekan',
-
+  ACTION_KEY: '90pojrt9-2tred;sdfguytr08j-987to890pojrt9-2tred;sdfguytr08j-arokoyuolalekan',
+  PAYSTACK_PUBLIC: 'pk_test_043a24de735e150bc30f4f3ce84dc74a4a043baf'
 };
 
 /*

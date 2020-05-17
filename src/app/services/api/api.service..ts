@@ -13,9 +13,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 
 import { environment as env } from '../../../environments/environment';
 import {isNullOrUndefined} from 'util';
-import {EncryptDataService} from '../encryption/encrypt-data.service';
 import {Router} from '@angular/router';
-import {NotificationService} from '../notificationServices/notification.service';
 import {BootstrapNotifyService} from '../bootstrap-notify/bootstrap-notify.service';
 /**
  *
@@ -24,10 +22,8 @@ import {BootstrapNotifyService} from '../bootstrap-notify/bootstrap-notify.servi
 @Injectable()
 export class ApiService extends RestfulHttpService {
   constructor(http: HttpClient,
-              private encryptionService: EncryptDataService,
               private router: Router,
-              private alertService: BootstrapNotifyService,
-              private notification: NotificationService) {
+              private alertService: BootstrapNotifyService) {
     super(http);
   }
 
