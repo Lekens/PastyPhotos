@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // API_URL: 'https://pasty-photos.herokuapp.com/api',
-  API_URL: 'http://localhost:8070/api',
+  API_URL: 'https://pasty-photos.herokuapp.com/api',
+  // API_URL: 'http://localhost:8070/api',
   API_VERSION: 'v1',
   JWT_KEY: '78888ujgfe3234567880000000000$&^%$0ToKE',
   TOKEN: 'hj6545tyhertyuew2345678888ujgfe3234567880000000000$&^%$0ToKENiiijyyH35Yyr6790-tgh45678ij',
