@@ -432,18 +432,18 @@
         <div class="padding-x-30 pb-3 collapse show w-100" id="collapseBagItems" >
 
           <div class="table-responsive">
-            <table class="table table-borderless text-left text-uppercase">
+            <table class="table table-borderless text-uppercase">
               <tbody>
               <tr>
-                <td>3 Tiles for</td>
+                <td class="text-left">3 Tiles for</td>
                 <td>{{checkoutOrder?.amount_for_three | currency: 'NGN '}}</td>
               </tr>
               <tr *ngIf="checkoutOrder.number_of_frames > 3">
-                <td>{{checkoutOrder.extra_num}} additional Tile for</td>
+                <td class="text-left">{{checkoutOrder.extra_num}} additional Tile for</td>
                 <td>{{checkoutOrder?.extra_amount | currency: 'NGN '}}</td>
               </tr>
               <tr>
-                <th>{{checkoutOrder?.number_of_frames}} tiles in Total</th>
+                <th class="text-left">{{checkoutOrder?.number_of_frames}} tiles in Total</th>
                 <th>{{checkoutOrder?.total_amount | currency: 'NGN '}}</th>
               </tr>
               </tbody>
@@ -457,7 +457,7 @@
 
         <div class="padding-x-30 pb-3 w-100">
           <div class="delivery-by pt-3">Delivery by</div>
-          <div class="delivery-date py-3">{{checkoutOrder?.delivery_date}}</div>
+          <div class="delivery-date py-3">{{checkoutOrder?.delivery_date | date}}</div>
           <div class="container-login100-form-btn">
             <div class="">
               <button  *ngIf="!loaders.saving" type="submit" class="place-order" [disabled]="full_name.errors || email.errors || phone_number.errors">
@@ -488,3 +488,4 @@
 
 <input type="file" id="fileUploader" accept="image/*" class="input-file" *ngIf="uploadImageToggle" (change)="validateImage($event);">
 
+<!--<button (click)='window.open(URL, "_blank");' id="openPaymentURL"></button>-->

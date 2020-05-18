@@ -277,3 +277,37 @@
   padding: 30px;
   color: #ffffff;
 }
+
+
+::-webkit-input-placeholder { /* Edge */
+  font-size: 8px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Cosmica";
+  line-height: 1.36;
+  letter-spacing: normal;
+  /*text-align: center;*/
+  color: #363636;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  font-size: 8px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Cosmica";
+  line-height: 1.36;
+  letter-spacing: normal;
+  /*text-align: center;*/
+  color: #363636;
+}
+
+::placeholder {
+  font-size: 8px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Cosmica";
+  line-height: 1.36;
+  letter-spacing: normal;
+  /*text-align: center;*/
+  color: #363636;
+}

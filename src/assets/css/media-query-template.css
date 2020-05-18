@@ -82,7 +82,7 @@ and (min-width : 320px) and (min-height : 480px) {
 @media only screen
 and (min-width : 320px) and (min-height : 533px) {
   .css-1dkwqii {
-  top: 10.9%;
+  top: 13.9%;
   /*9.9 */
     /*18.9*/
 }
@@ -126,15 +126,29 @@ and (min-width : 321px) {
 @media only screen
 and (min-width : 360px) {
   .css-1dkwqii {
-  top: 13.9%;
+  top: 16.9%;
   /*9.9 */
 }
 
   .matt-top {
-    top: 15.9%;
+    top: 14.9%;
   }
   .frame-container {
-    top: -30%;
+    top: -27%;
+  }
+}
+@media only screen
+and (min-width : 360px) and (min-height : 640px) {
+  .css-1dkwqii {
+  top: 12.9%;
+  /*9.9 */
+}
+
+  .matt-top {
+    top: 14.9%;
+  }
+  .frame-container {
+    top: -32%;
   }
 }
 @media only screen
@@ -148,7 +162,7 @@ and (min-width : 375px) {
     top: 16.9%;
   }
   .frame-container {
-    top: -37%;
+    top: -24%;
   }
 }
 @media only screen

@@ -30,6 +30,8 @@
     }
     .checkout-btn {
         padding: 15px 55px;
+        font-size: 22px;
+
     }
     #hero-content {
         padding-top: 120px;
@@ -88,6 +90,8 @@
     }*/
     .checkout-btn {
         padding: 18px 85px;
+        font-size: 32px;
+
     }
 
     .checkout-btn-div {
@@ -155,6 +159,8 @@
 
     .checkout-btn {
         padding: 15px 30px;
+      font-size: 27px;
+
     }
     /*.filter-strip {
         justify-content: inherit;

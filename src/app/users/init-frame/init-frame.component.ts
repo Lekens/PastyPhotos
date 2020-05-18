@@ -56,7 +56,7 @@ export class InitFrameComponent implements OnInit {
     matting: null,
     number_of_frames: 0,
     total_amount: 0.0,
-    delivery_date: moment().add(7, 'days').format('DD-MM-YYYY'),
+    delivery_date: moment().add(3, 'days'), // .format('DD-MM-YYYY')
     extra_num: 0,
     extra_amount: 0.0,
     amount_for_three: 0.0,
@@ -417,7 +417,8 @@ export class InitFrameComponent implements OnInit {
       this.loaders.saving = false;
       this.closeOverlay();
       this.alertService.success(response.msg || 'Order saved successfully!, redirecting to payment');
-      window.open(response.data.authorization_url);
+      // window.open();
+      window.location.assign(response.data.authorization_url);
     }, error => {
       this.loaders.saving = false;
       this.alertService.error(error.error.msg || 'Unable to process your transaction, please try again!');
