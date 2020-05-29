@@ -189,7 +189,7 @@ export class UtilService {
     $('.cd-panel').css({'z-index': '0'});
     console.log('Event ', (<HTMLInputElement>e.target).files[0]);
     const fileUpload = (<HTMLInputElement>e.target).files[0];
-    console.log('File uplioad', fileUpload);
+    console.log('File uplioad', fileUpload, fileUpload.size);
     // Initiate the FileReader object.
     const reader: FileReader = new FileReader();
     // Read the contents of Image File.
@@ -203,12 +203,17 @@ export class UtilService {
         // Determine the Height and Width.
         const OutHeight = (<HTMLInputElement>this).height;
         const OutWidth = (<HTMLInputElement>this).width;
-        if (OutHeight < height || OutWidth < width ) {
-          // error, image width cannot be less than, height less than
-          failCallback();
+        // dimensions.push({width: OutWidth, height: OutHeight});
+        if (fileUpload.size < 100000) {
+          failCallback(OutWidth, OutHeight);
           return false;
         }
-        successCallback();
+        if (OutHeight < height || OutWidth < width ) {
+          // error, image width cannot be less than, height less than
+          failCallback(OutWidth, OutHeight);
+          return false;
+        }
+        successCallback(OutWidth, OutHeight);
         return true;
       };
     };

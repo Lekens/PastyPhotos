@@ -3,7 +3,7 @@ declare const $: any;
 
 @Component({
   selector: 'app-root',
-  template: `<router-outlet></router-outlet>`,
+  template: `<app-notify-new></app-notify-new><router-outlet></router-outlet>`,
   styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.None
 })

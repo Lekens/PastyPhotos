@@ -9,6 +9,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/storage';
 import 'firebase/analytics';
 import {HttpClientModule} from '@angular/common/http';
+import {NotifyComponent} from "./shared/components/notify/notify.component";
 // import {AngularCropperjsModule} from "angular-cropperjs";
 
 firebase.initializeApp(ENV.FIREBASE);
@@ -17,7 +18,8 @@ firebase.analytics();
 @NgModule({
   declarations: [
     AppComponent,
-    landingRouting.components
+    landingRouting.components,
+    NotifyComponent
   ],
   imports: [
     BrowserModule,

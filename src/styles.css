@@ -6,7 +6,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "assets/datatables/datatables.net-bs4/css/dataTables.bootstrap4.min.css";
 @import "assets/datatables/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css";
-@import "~croppie/croppie.css";
+@import "assets/css/croppie.css";
 @import "assets/css/style.css";
 @import "assets/css/styles.css";
 @import "assets/css/form.css";

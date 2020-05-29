@@ -65,7 +65,7 @@
 
 
               <div class="text-center" style="padding-top: 30px;" (click)="triggerUploader()">
-                <div class="SquareUploadButton right-side">
+                <div class="SquareUploadButton animated">
                   <div class="plus-icon">
                     <svg viewBox="0 0 37.76 38.93">
                       <path class="plus-shape" d="M21.22,0V17.2H37.76v4.39H21.22V38.93H16.54V21.59H0V17.2H16.54V0Z"></path>
@@ -132,12 +132,16 @@
                      [id]="'tile-' + i" (click)="popupPresentation(tile, i, 'showActions')">
                   <!--<div class="tile-base"></div>-->
                   <div class="preview-tile preview" [id]="'preview-no-' + i">
-                    <img alt="" class="preview-image" [src]="tile"
-                         style="opacity: 1; height: 100%;width: 100%;"></div>
+                    <img alt="" class="preview-image" [src]="tile" *ngIf="dimensionTiles[i]==='a'"
+                         style="opacity: 1; width: 100%">
+                    <img alt="" class="preview-image" [src]="tile" *ngIf="dimensionTiles[i]!=='a'"
+                         style="opacity: 1; height: 100%">
+
+                  </div>
                   <div class="tile-frame">
-                    <img class="frame-svg frame hidden black-frame" src="assets/img/black.svg">
-                    <img class="frame-svg frame hidden white-frame" src="assets/img/white.svg">
-                    <img class="frame-svg frame hidden none-frame" src="assets/img/none.svg">
+                    <img class="frame-svg frame hidden black-frame animated fadeIn" src="assets/img/black.svg">
+                    <img class="frame-svg frame hidden white-frame animated fadeIn" src="assets/img/white.svg">
+                    <!--<img class="frame-svg frame hidden none-frame" src="assets/img/none.svg">-->
                   </div>
                 </div>
 
@@ -225,11 +229,12 @@
         <div *ngIf="view.showActions" class="MuiPaper-root MuiDrawer-paper adjust-tile-drawer MuiDrawer-paperAnchorBottom MuiDrawer-action-selected MuiPaper-elevation16 text-uppercase top-60" tabindex="-1"
              style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;">
           <div class="text-center mb-4" style="cursor: pointer" (click)="closeOverlay()">
-            <div style="display: inline-block">
+            <img src="assets/img/Close_icon.svg">
+            <!--<div style="display: inline-block">
               <div style="width: 30px; height: 30px;border-radius: 50%;border: 2px solid #ffffff;color: #ffffff;padding: 0px 5px;text-align: center">
                 <span style="font-size: 33px;">&times;</span></div>
 
-            </div>
+            </div>-->
           </div>
           <div class="adjust-tile-buttons" style="">
             <!--popupPresentation(selectedTileImage.image, selectedTileImage.index, 'adjustView');-->
@@ -302,33 +307,37 @@
               <div class="cropper-text">PINCH AND ZOOM</div>
 
               <!--css-1dkwqii-->
-              <div class="cropper-container-style css-command-pos" [ngClass]="selectedTileImage.tileProp.mat === 'matting' ? 'matt-top' : 'css-1dkwqii'">
-               <div class="cropper-image-style css-ebdd77 "
-                    style="position: absolute;opacity: 1; background-color: transparent;transform: translate(0px, 0px) rotate(0deg) scale(1);" id="cropperNow" ></div>
+              <!--cropper-container-style css-command-pos-->
+              <!--[ngClass]="selectedTileImage.tileProp.mat === 'matting' ? 'matt-top' : 'css-1dkwqii'"-->
+              <div class="mt-4">
+                <!--cropper-image-style css-ebdd77-->
+                <!--style="position: absolute;opacity: 1; background-color: transparent;transform: translate(0px, 0px) rotate(0deg) scale(1);"-->
+               <div class="" id="cropperNow" ></div>
+                <div class="">
+                  <div class="text-center">
+                    <div class="rotate-image">
+                      <span class="fa fa-rotate-right pr-5" (click)="rotateRight()"></span>
+
+                      <span class="fa fa-rotate-left pl-5" (click)="rotateLeft()"></span>
+
+
+
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="frame-container" >
+            <!--  <div class="frame-container" hidden>
                 <div class="tile-frame">
                   <img class="frame" [ngClass]="selectedTileImage.tileProp.color === 'black' ? '' : 'hidden'" src="assets/img/black.svg" />
                   <img class="frame" [ngClass]="selectedTileImage.tileProp.color === 'white' ? '' : 'hidden'" src="assets/img/white.svg" />
 
                 </div>
-              </div>
+              </div>-->
 
 
             </div>
-            <div class="d-none d-sm-none d-lg-block ">
-              <div class="position-absolute offset-md-5" style="bottom: 5%;">
-              <div class="d-inline-block rotate-image">
-                <span class="fa fa-rotate-right pr-5" (click)="rotateRight()"></span>
 
-                <span class="fa fa-rotate-left pl-5" (click)="rotateLeft()"></span>
-
-
-
-              </div>
-            </div>
-            </div>
 
 
           </div>

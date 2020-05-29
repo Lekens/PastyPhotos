@@ -53,9 +53,12 @@
   border-radius: 25px;
   width: 70px;
   font-family: Cosmica-Bold;
-  height: 65px;
+  height: 65px;/*
   font-size: 10px;
-  padding: 10px 10px;
+  padding: 10px 10px;*/
+  font-size: 8px;
+  padding: 7px 7px;
+
 }
 .btn-color:hover {
   outline: none!important;
@@ -134,9 +137,9 @@
 .filter-button .filter-name {
     margin-top: 2px;
     /*font-weight: 700;*/
-    font-size: 13px;
+    font-size: 10px;
     text-transform: uppercase;
-    font-family: Cosmica-Bold;
+    font-family: Cosmica-Bold!important;
     /*font-size: 8px;*/
     font-weight: bold;
     font-stretch: normal;
@@ -223,6 +226,7 @@
 }
 .SquareUploadButton:hover .upload-icon {
     display: block;
+   max-width: 100%;
 }
 
 

@@ -3,15 +3,16 @@ import {CacheService} from '../../services/cacheService/cache.service';
 import {environment as ENV} from '../../../environments/environment';
 import {BootstrapNotifyService} from '../../services/bootstrap-notify/bootstrap-notify.service';
 import {UtilService} from '../../services/utilService/util.service';
-import {isNullOrUndefined} from 'util';
+import {isNullOrUndefined, isNullOrUnodefined} from 'util';
 import {UploadService} from '../../services/uploadService/upload.service';
 import {DeleteService} from '../../services/firebase-delete/delete.service';
 import {Upload} from '../../models/upload';
 import Croppie from 'croppie/croppie';
 import * as moment from 'moment';
 import {UserService} from '../../services/api-handlers/userService/user.service';
-import {ActivatedRoute} from "@angular/router";
-import {NavigatorService} from "../../services/navigatorService/navigator.service";
+import {ActivatedRoute} from '@angular/router';
+import {NavigatorService} from '../../services/navigatorService/navigator.service';
+import {NotificationService} from '../../services/notificationServices/notification.service';
 // import PaystackPop from '@paystack/inline-js/dist/inline.js';
 @Component({
   selector: 'app-init-frame',
@@ -24,7 +25,8 @@ export class InitFrameComponent implements OnInit {
     style: null,
     mat: null,
     color: 'black',
-    tiles: []
+    tiles: [],
+    dimensions: []
   };
   globalLoading = false;
   loaders = {
@@ -34,6 +36,9 @@ export class InitFrameComponent implements OnInit {
   uploadImageToggle = true;
   vanilla: any;
   public tiles: any[] = [];
+  public dimensionTiles: any[] = [];
+  height = 0;
+  width = 0;
   public view = {
     showActions: true,
     adjustView: false,
@@ -64,7 +69,8 @@ export class InitFrameComponent implements OnInit {
   };
   orderId = null;
   constructor(private cacheService: CacheService,
-              private alertService: BootstrapNotifyService,
+              private alertService: NotificationService,
+              // private notifyService: NotificationService,
               private utilService: UtilService,
               private route: ActivatedRoute,
               private userService: UserService,
@@ -91,6 +97,7 @@ export class InitFrameComponent implements OnInit {
         console.log('EXECUTE THE CALL BACK', userFrames);
         this.selectedFrameStyle = userFrames;
         this.tiles = userFrames.tiles;
+        this.dimensionTiles = userFrames.dimensions;
         this.frameStyle(userFrames.style, userFrames.color, userFrames.mat ? 'matting' : '');
       } else {
         this.frameStyle('classic', 'black', 'matting');
@@ -133,8 +140,10 @@ export class InitFrameComponent implements OnInit {
     const index = this.tiles.indexOf(image.image);
     console.log('Image ', image.image, image.index, index);
     this.tiles.splice(index, 1);
+    this.dimensionTiles.splice(index, 1);
     this.selectedFrameStyle.tiles = this.tiles;
-    this.updateCache(this.selectedFrameStyle.tiles);
+    this.selectedFrameStyle.dimensions = this.dimensionTiles;
+    this.updateCache(this.selectedFrameStyle.tiles, this.selectedFrameStyle.dimensions);
     this.closeOverlay();
     if (image.image.includes('https://firebasestorage.googleapis.com')) {
       const imageName = image.split('https://firebasestorage.googleapis.com/v0/b/pastyphotos.appspot.com/o/pasty_photos_user_images%2F')[1];
@@ -152,14 +161,17 @@ export class InitFrameComponent implements OnInit {
     this.selectedFrameStyle.mat = type;
     this.updateTiles();
     console.log('Update Rendering');
-    this.updateCache(this.tiles);
+    this.updateCache(this.tiles, this.dimensionTiles);
   }
-  public updateCache(tiles) {
+  public updateCache(tiles, dimensions = this.dimensionTiles) {
     if (tiles.length) {
       this.selectedFrameStyle.tiles = tiles;
+      this.selectedFrameStyle.dimensions = dimensions;
       this.cacheService.setStorage(ENV.SECRET_USER_KEY, JSON.stringify(this.selectedFrameStyle));
+      // this.cacheService.setStorage('dimensions', JSON.stringify(this.dimensionTiles));
     } else {
       this.cacheService.deleteStorage(ENV.SECRET_USER_KEY);
+      // this.cacheService.deleteStorage('dimensions');
     }
   }
   public updateTiles() {
@@ -174,7 +186,7 @@ export class InitFrameComponent implements OnInit {
       if (type) {
         $('.preview-tile').addClass('matting');
       }
-      this.updateCache(this.tiles);
+      this.updateCache(this.tiles, this.dimensionTiles);
     }, 1000);
   }
   public triggerUploader() {
@@ -191,11 +203,17 @@ export class InitFrameComponent implements OnInit {
       return false;
     } else {
       this.utilService.validateImage(event, 400, 400,
-        () => {
-        this.decideToUseBadImage(event, this.tiles);
+        (width, height) => {
+          // this.dimensionTiles = dimension;
+          this.width = width;
+          this.height = height;
+          this.decideToUseBadImage(event, this.tiles);
           this.uploadImageToggle = false;
-        }, () => {
-        this.processSelectedFile(event, this.tiles);
+        }, (width, height) => {
+        // this.dimensionTiles = dimension;
+          this.width = width;
+          this.height = height;
+        this.processSelectedFile(event, this.tiles, this.width, this.height);
           this.uploadImageToggle = false;
         });
       return true;
@@ -224,9 +242,9 @@ export class InitFrameComponent implements OnInit {
   }
   public keepBadImage() {
     this.closeOverlay();
-    this.processSelectedFile(this.keepEvent, this.tiles);
+    this.processSelectedFile(this.keepEvent, this.tiles, this.width, this.height);
   }
-  public processSelectedFile(event, item) {
+  public processSelectedFile(event, item, width, height) {
     const reader = new FileReader();
     const file = event.target.files[0];
     if (!isNullOrUndefined(file)) {
@@ -234,6 +252,9 @@ export class InitFrameComponent implements OnInit {
         item.push(reader.result);
         console.log('ITEMs ', item);
         this.updateTiles();
+        const width_ = parseInt(width, 10);
+        const height_ = parseInt(height, 10);
+        this.dimensionTiles.push(height_ > width_ ? 'a' : 'b');
         this.uploadImageFirebase(event, item, (item.length - 1));
       };
       reader.readAsDataURL(file);
@@ -258,15 +279,17 @@ export class InitFrameComponent implements OnInit {
   }
   public initialCropper(properties) {
     console.log('URL ', properties);
-    let boundary = { width: '230px', height: '253px' };
-    if (properties.tileProp.mat === 'matting') {
+    // let boundary = { width: '230px', height: '253px' };
+    /*if (properties.tileProp.mat === 'matting') {
       boundary = { width: '210px', height: '220px' };
-    }
+    }*/
+
+
   const el = document.getElementById('cropperNow');
   const Options = {
     // enableExif: true,
-    viewport: { width: '230px', height: '253px'},
-    boundary: boundary,
+    viewport: { width: '250px', height: '250px'},
+    boundary: { width: '250px', height: '250px' },
     showZoomer: false,
     enableOrientation: true,
     enableResize: false,
@@ -274,7 +297,10 @@ export class InitFrameComponent implements OnInit {
     mouseWheelZoom: 'ctrl',
     enforceBoundary: true
   };
-  this.vanilla = new Croppie(el, Options);
+    this.vanilla = new Croppie(el, Options);
+    setTimeout(() => {
+      $('.cr-viewport').addClass('cr-viewport-' + properties.tileProp.color.toLowerCase());
+    }, 500);
   this.vanilla.bind({
                       // url: 'https://i.imgur.com/xD9rzSt.jpg',
                       url: `${properties.image}`,
@@ -303,6 +329,7 @@ export class InitFrameComponent implements OnInit {
         this.closeOverlay();
         this.vanilla.destroy();
         this.tiles[this.selectedTileImage.index] = dataObject[this.selectedTileImage.index];
+        this.dimensionTiles[this.selectedTileImage.index] = 'b';
         console.log('FRAME COLOR ', this.selectedTileImage.tileProp.color);
         setTimeout(() => {
           $(`.${this.selectedTileImage.tileProp.color}-frame`).removeClass('hidden');
@@ -327,13 +354,20 @@ export class InitFrameComponent implements OnInit {
           this.uploadLocalImages(userFrames.tiles, frame, index);
         }
     });
+    if (userFrames.tiles.length > 3) {
+      this.checkoutOrder.total_amount = (15000 + (4000 * (userFrames.tiles.length - 3)));
+    } else if (userFrames.tiles.length === 3) {
+      this.checkoutOrder.total_amount = 15000;
+    } else {
+      this.alertService.error('you cannot order for less than 3 frames!');
+      return false;
+    }
     this.checkoutOrder.images = userFrames.tiles;
     this.checkoutOrder.frame_color = userFrames.color;
     this.checkoutOrder.frame_style = userFrames.style;
-    this.checkoutOrder.number_of_frames = this.checkoutOrder.images.length;
-    this.checkoutOrder.total_amount = 15000 + (4000 * (this.checkoutOrder.number_of_frames - 3));
-    this.checkoutOrder.extra_num = this.checkoutOrder.number_of_frames - 3;
-    this.checkoutOrder.extra_amount = 4000 * (this.checkoutOrder.extra_num);
+    this.checkoutOrder.number_of_frames = userFrames.tiles.length;
+    this.checkoutOrder.extra_num = userFrames.tiles.length - 3;
+    this.checkoutOrder.extra_amount = 4000 * (userFrames.tiles.length - 3);
     this.checkoutOrder.amount_for_three = 5000 * 3;
   }
   uploadLocalImages(userFrames, image, index) {
@@ -347,8 +381,13 @@ export class InitFrameComponent implements OnInit {
     }, index);
   }
   public checkoutCart() {
-    this.openOverlay('checkout-overlay');
     this.uploadAllPhotos();
+    const userFrames = JSON.parse(this.cacheService.getStorage(ENV.SECRET_USER_KEY));
+    if (userFrames.tiles.length < 3) {
+      this.uploadAllPhotos();
+      return this.alertService.error('Upload at least three images to proceed.');
+    }
+    this.openOverlay('checkout-overlay');
   }
   public checkOutOrder() {
     this.loaders.saving = true;
@@ -435,7 +474,8 @@ export class InitFrameComponent implements OnInit {
          style: null,
          mat: null,
          color: 'black',
-         tiles: []
+         tiles: [],
+         dimensions: []
        };
        this.updateCache(this.selectedFrameStyle.tiles);
        this.navigateService.navigateUrl('/');

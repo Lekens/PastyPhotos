@@ -859,6 +859,7 @@ a {
     flex-direction: column;
     border-radius: 10px;
     align-items: center;
+    font-family: "Cosmica-Bold";
     cursor: pointer;
     -webkit-animation: fade-scale-in .4s;
     animation: fade-scale-in .4s
@@ -1299,9 +1300,9 @@ a {
 
 .tile .preview.matting {
     /*width: 179px;*/
-    width: 169px;
+    width: 159px;
     /*height: 179px;*/
-    height: 169px;
+    height: 159px;
     padding-top: 1px
 }
 
@@ -1831,17 +1832,17 @@ a {
 
 @-webkit-keyframes pink-highlight {
     50% {
-        color: #ff037d;
-        border-color: #ff037d;
-        fill: #ff037d
+        color: #ff59cc;
+        border-color: #ff59cc;
+        fill: #ff59cc
     }
 }
 
 @keyframes pink-highlight {
     50% {
-        color: #ff037d;
-        border-color: #ff037d;
-        fill: #ff037d
+      color: #ff59cc;
+      border-color: #ff59cc;
+      fill: #ff59cc
     }
 }
 

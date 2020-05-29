@@ -11,6 +11,7 @@ import {EncryptDataService} from '../../../services/encryption/encrypt-data.serv
 import {CacheService} from '../../../services/cacheService/cache.service';
 import {NotifyComponent} from '../../components/notify/notify.component';
 import {ScrollToService} from '@nicky-lenaers/ngx-scroll-to';
+import {ValidationErrorService} from '../../../services/validation-error-service/validation-error.service';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import {ScrollToService} from '@nicky-lenaers/ngx-scroll-to';
     RouterModule
   ],
   declarations: [
-    NotifyComponent
+    // NotifyComponent
   ],
   entryComponents: [],
   providers: [
@@ -32,7 +33,8 @@ import {ScrollToService} from '@nicky-lenaers/ngx-scroll-to';
     GuardService,
     EncryptDataService,
     CacheService,
-    ScrollToService
+    ScrollToService,
+    ValidationErrorService
   ],
   exports: [
     CommonModule,
