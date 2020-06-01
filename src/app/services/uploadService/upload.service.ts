@@ -89,4 +89,26 @@ export class UploadService {
       }
     );
   }
+
+  public uploadMultiple(upload) {
+    const itemForUpload = JSON.parse(JSON.stringify(upload));
+    const name = `image-${Math.round(Math.random() * 100)}.png`;
+    const uploadBase = itemForUpload.split(';base64,')[1];
+    return new Promise( (resolve, reject) => {
+      const storageRef = firebase.storage().ref();
+      const uploadTask = storageRef.child(`${this.basePath}/${name}`).putString(uploadBase, 'base64');
+      uploadTask.on('state_changed',
+        function progress(snapshot) {        },
+        function error(err) {
+          reject('');
+        },
+        function complete() {
+          uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            console.log('File available at', downloadURL);
+            resolve(downloadURL);
+          });
+        }
+      );
+    });
+  }
 }

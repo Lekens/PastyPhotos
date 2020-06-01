@@ -187,8 +187,11 @@ export class UtilService {
   }
   public validateImage(e, height, width, failCallback, successCallback) {
     $('.cd-panel').css({'z-index': '0'});
-    console.log('Event ', (<HTMLInputElement>e.target).files[0]);
-    const fileUpload = (<HTMLInputElement>e.target).files[0];
+    if (!e) {
+      return false;
+    }
+    console.log('Event ', e ); // (<HTMLInputElement>e.target).files[0]);
+    const fileUpload = e ; // (<HTMLInputElement>e.target).files[0];
     console.log('File uplioad', fileUpload, fileUpload.size);
     // Initiate the FileReader object.
     const reader: FileReader = new FileReader();
@@ -205,15 +208,15 @@ export class UtilService {
         const OutWidth = (<HTMLInputElement>this).width;
         // dimensions.push({width: OutWidth, height: OutHeight});
         if (fileUpload.size < 100000) {
-          failCallback(OutWidth, OutHeight);
+           failCallback(OutWidth, OutHeight);
           return false;
         }
         if (OutHeight < height || OutWidth < width ) {
           // error, image width cannot be less than, height less than
-          failCallback(OutWidth, OutHeight);
+           failCallback(OutWidth, OutHeight);
           return false;
         }
-        successCallback(OutWidth, OutHeight);
+         successCallback(OutWidth, OutHeight);
         return true;
       };
     };

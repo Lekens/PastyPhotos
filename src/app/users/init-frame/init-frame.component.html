@@ -189,7 +189,8 @@
         <div class="mt-5 text-center m-l--50" >
           <div class="checkout-btn-div" style="display: inline-block;">
                       <span>
-                          <button class="checkout-btn" [disabled]="tiles.length < 3" (click)="checkoutCart()"><span>checkout</span></button>
+                          <button class="checkout-btn" disabled *ngIf="loaders.checking"><span><i class="fa fa-spin fa-spinner"></i>&nbsp;Uploading</span></button>
+                          <button class="checkout-btn" [disabled]="tiles.length < 3" *ngIf="!loaders.checking" (click)="checkoutCart()"><span>checkout</span></button>
                       </span>
           </div>
         </div>
@@ -495,6 +496,6 @@
 
 
 
-<input type="file" id="fileUploader" accept="image/*" class="input-file" *ngIf="uploadImageToggle" (change)="validateImage($event);">
+<input type="file" id="fileUploader" multiple accept="image/*" class="input-file" *ngIf="uploadImageToggle" (change)="validateImage($event);">
 
 <!--<button (click)='window.open(URL, "_blank");' id="openPaymentURL"></button>-->

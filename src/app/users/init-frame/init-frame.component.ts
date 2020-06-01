@@ -3,7 +3,7 @@ import {CacheService} from '../../services/cacheService/cache.service';
 import {environment as ENV} from '../../../environments/environment';
 import {BootstrapNotifyService} from '../../services/bootstrap-notify/bootstrap-notify.service';
 import {UtilService} from '../../services/utilService/util.service';
-import {isNullOrUndefined, isNullOrUnodefined} from 'util';
+import {isNullOrUndefined} from 'util';
 import {UploadService} from '../../services/uploadService/upload.service';
 import {DeleteService} from '../../services/firebase-delete/delete.service';
 import {Upload} from '../../models/upload';
@@ -13,7 +13,7 @@ import {UserService} from '../../services/api-handlers/userService/user.service'
 import {ActivatedRoute} from '@angular/router';
 import {NavigatorService} from '../../services/navigatorService/navigator.service';
 import {NotificationService} from '../../services/notificationServices/notification.service';
-// import PaystackPop from '@paystack/inline-js/dist/inline.js';
+
 @Component({
   selector: 'app-init-frame',
   templateUrl: './init-frame.component.html',
@@ -28,14 +28,18 @@ export class InitFrameComponent implements OnInit {
     tiles: [],
     dimensions: []
   };
+  triggerHolder = false;
   globalLoading = false;
   loaders = {
     loading: false,
-    saving: false
+    saving: false,
+    checking: false
   };
   uploadImageToggle = true;
   vanilla: any;
+  index = null;
   public tiles: any[] = [];
+  public imagesUploaded: any[] = [];
   public dimensionTiles: any[] = [];
   height = 0;
   width = 0;
@@ -146,7 +150,8 @@ export class InitFrameComponent implements OnInit {
     this.updateCache(this.selectedFrameStyle.tiles, this.selectedFrameStyle.dimensions);
     this.closeOverlay();
     if (image.image.includes('https://firebasestorage.googleapis.com')) {
-      const imageName = image.split('https://firebasestorage.googleapis.com/v0/b/pastyphotos.appspot.com/o/pasty_photos_user_images%2F')[1];
+      const imageName = image.image
+        .split('https://firebasestorage.googleapis.com/v0/b/pastyphotos.appspot.com/o/pasty_photos_user_images%2F')[1];
       const imageSplitted = imageName.split('?alt=');
       console.log('Image ', imageSplitted);
       this.firebaseDelete.deleteImages(imageSplitted[0]);
@@ -196,37 +201,76 @@ export class InitFrameComponent implements OnInit {
     }, 10);
   }
   public validateImage(event) {
-    const image = event.target.files[0];
-    console.log('Image ', image, event);
-    if (!image.type.includes('image/')) {
+    this.imagesUploaded = event.target.files;
+    console.log('LENGHT ', this.imagesUploaded);
+    this.uploadImageRecursive(this.imagesUploaded, 0);
+  }
+  public proceedToUpload() {
+    console.log('Done with file uploads');
+    this.uploadImageToggle = false;
+    this.loaders.checking = true;
+    this.triggerHolder = true;
+    this.assureUploaded(0, [], this.triggerHolder); // start processing uploads
+  }
+  public uploadImageRecursive(images, index = this.index) {
+    const image =  event =  images[index];
+    console.log('Image 999999999999999999', image, event);
+    if (this.imagesUploaded.length === index ) {
+      // done with upload
+      this.proceedToUpload();
+      return false;
+    }
+    if (image && image.type && !image.type.includes('image/')) {
       this.alertService.error('Invalid upload file, please try uploading a valid image!');
       return false;
     } else {
-      this.utilService.validateImage(event, 400, 400,
-        (width, height) => {
-          // this.dimensionTiles = dimension;
-          this.width = width;
-          this.height = height;
-          this.decideToUseBadImage(event, this.tiles);
-          this.uploadImageToggle = false;
-        }, (width, height) => {
-        // this.dimensionTiles = dimension;
-          this.width = width;
-          this.height = height;
-        this.processSelectedFile(event, this.tiles, this.width, this.height);
-          this.uploadImageToggle = false;
-        });
-      return true;
+       this.processImage(event, index);
     }
   }
-  public decideToUseBadImage(event, item) {
+  public processSelectedFile(event, item, width, height, index) {
+    const reader = new FileReader();
+    const file = event; // .target.files[0];
+    if (!isNullOrUndefined(file)) {
+      reader.onloadend = () => {
+        item.push(reader.result);
+        console.log('ITEMs ', item);
+        this.updateTiles();
+        const width_ = parseInt(width, 10);
+        const height_ = parseInt(height, 10);
+        this.dimensionTiles.push(height_ > width_ ? 'a' : 'b');
+        this.uploadImageFireBase(event, item, index, index);
+      };
+      reader.readAsDataURL(file);
+      // this.updateTiles();
+    }
+  }
+
+   processImage(event, index) {
+     this.utilService.validateImage(event, 400, 400,
+      (width, height) => {
+        // this.dimensionTiles = dimension;
+        this.width = width;
+        this.height = height;
+         this.decideToUseBadImage(event, this.tiles, index);
+        // this.uploadImageToggle = false;
+      }, (width, height) => {
+        // this.dimensionTiles = dimension;
+        this.width = width;
+        this.height = height;
+        this.processSelectedFile(event, this.tiles, this.width, this.height, index);
+        // this.uploadImageToggle = false;
+      });
+    return true;
+  }
+  public decideToUseBadImage(event, item, index) {
     console.log('Hello world ', event, item);
     const reader = new FileReader();
-    const file = event.target.files[0];
+    const file = event; // .target.files[0];
     if (!isNullOrUndefined(file)) {
       reader.onloadend = () => {
         this.badImage = reader.result;
         this.keepEvent = event;
+        this.index = index;
       };
       reader.readAsDataURL(file);
     }
@@ -239,28 +283,32 @@ export class InitFrameComponent implements OnInit {
     this.closeOverlay();
     this.badImage = null;
     this.keepEvent = null;
+    console.log('Indexer ', this.index);
+    this.uploadImageRecursive(this.imagesUploaded, this.index + 1);
+    this.index = null;
   }
   public keepBadImage() {
     this.closeOverlay();
-    this.processSelectedFile(this.keepEvent, this.tiles, this.width, this.height);
+    this.processSelectedFile(this.keepEvent, this.tiles, this.width, this.height, this.index);
   }
-  public processSelectedFile(event, item, width, height) {
-    const reader = new FileReader();
-    const file = event.target.files[0];
-    if (!isNullOrUndefined(file)) {
-      reader.onloadend = () => {
-        item.push(reader.result);
-        console.log('ITEMs ', item);
-        this.updateTiles();
-        const width_ = parseInt(width, 10);
-        const height_ = parseInt(height, 10);
-        this.dimensionTiles.push(height_ > width_ ? 'a' : 'b');
-        this.uploadImageFirebase(event, item, (item.length - 1));
-      };
-      reader.readAsDataURL(file);
+  public uploadImageFireBase(event, item, index, looper) {
+    // let bucket: FileList;
+    // let itemForUpload;
+    // bucket = event.target.files;
+    // itemForUpload  = bucket.item(0);
+    // console.log('itemForUpload' , itemForUpload);
+    this.uploadImageRecursive(this.imagesUploaded, looper + 1);
+    /* this.uploadService.uploadBlob(new Upload(event), JSON.parse(JSON.stringify(item)), async (dataObject) => {
+      // this.tiles = dataObject;
+      console.log('Data ', dataObject);
+      this.cacheService.deleteSession(ENV.SECRET_USER_KEY);
+      setTimeout(() => {
+        this.updateCache(dataObject);
+      }, 20);
       // this.updateTiles();
-    }
+    }, index);*/
   }
+
   public uploadImageFirebase(event, item, index) {
     let bucket: FileList;
     let itemForUpload;
@@ -277,6 +325,8 @@ export class InitFrameComponent implements OnInit {
       // this.updateTiles();
     }, index);
   }
+
+
   public initialCropper(properties) {
     console.log('URL ', properties);
     // let boundary = { width: '230px', height: '253px' };
@@ -345,7 +395,7 @@ export class InitFrameComponent implements OnInit {
     });
   }
 
-  public uploadAllPhotos() {
+  public uploadAllPhotos(keepers = []) {
     const userFrames = JSON.parse(this.cacheService.getStorage(ENV.SECRET_USER_KEY));
     console.log('UserFrames', userFrames);
     userFrames.tiles.forEach((frame, index) => {
@@ -381,14 +431,88 @@ export class InitFrameComponent implements OnInit {
     }, index);
   }
   public checkoutCart() {
-    this.uploadAllPhotos();
+    this.loaders.checking = true;
+    this.triggerHolder = false;
+    const userFrames = JSON.parse(this.cacheService.getStorage(ENV.SECRET_USER_KEY));
+    this.assureUploaded(0, []);
+  }
+  public imageUrlReplacer(oldImages, newImages) {
+    for (let i = 0; i < oldImages.length; i++) {
+      if (oldImages[i].includes('https://firebasestorage.googleapis.com/v0/b/pastyphotos.appspot.com/o/pasty_photos_user_images')) {
+        // do not replace the image;
+      } else {
+        oldImages[i] = newImages[i];
+      }
+    }
+    this.selectedFrameStyle.tiles = oldImages;
+    this.updateCache(this.selectedFrameStyle.tiles);
+  }
+  proceedToCheckoutNow(keeper, trigger) {
+    console.log('TRIGGER -============== ', trigger);
+    if (trigger) {
+      if (keeper.length) {
+        this.loaders.checking = false;
+        const userFrameTiles = JSON.parse(this.cacheService.getStorage(ENV.SECRET_USER_KEY));
+        this.imageUrlReplacer(userFrameTiles.tiles, keeper);
+      }
+      this.triggerHolder = false;
+      return false;
+    }
+    if (keeper.length) {
+      const userFrameTiles = JSON.parse(this.cacheService.getStorage(ENV.SECRET_USER_KEY));
+      this.imageUrlReplacer(userFrameTiles.tiles, keeper);
+    }
     const userFrames = JSON.parse(this.cacheService.getStorage(ENV.SECRET_USER_KEY));
     if (userFrames.tiles.length < 3) {
-      this.uploadAllPhotos();
-      return this.alertService.error('Upload at least three images to proceed.');
-    }
+     this.loaders.checking = false;
+     return this.alertService.error('Upload at least three images to proceed.');
+   }
+    this.uploadAllPhotos(keeper);
+    this.loaders.checking = false;
     this.openOverlay('checkout-overlay');
   }
+
+  public assureUploaded(index, keeper, trigger = this.triggerHolder) {
+    const userFrames = JSON.parse(this.cacheService.getStorage(ENV.SECRET_USER_KEY));
+    if (!userFrames) { return false; }
+    const images = userFrames.tiles;
+    console.log('INDEXER ', images.length, index, images.length === index);
+    if (images.length === index ) {
+      // done with upload
+      this.proceedToCheckoutNow(keeper, trigger);
+      return false;
+    }
+    if (images[index].includes('https://firebasestorage.googleapis.com/v0/b/pastyphotos.appspot.com/o/pasty_photos_user_images')) {
+      keeper.push(images[index]);
+      const next = index + 1;
+      this.assureUploaded(next, keeper);
+    } else {
+      this.uploadService.uploadMultiple(images[index]).then(success => {
+        // console.log('Sus ', success, index, this.proof.rawImage.length);
+        keeper.push(success);
+        const next = index + 1;
+        // console.log('NEXt SUS', next, this.proof.rawImage[next]);
+        this.assureUploaded(next, keeper);
+      }).catch(err => {
+        console.log('Error ', err, index);
+        // keeper.push({});
+        const next = index + 1;
+        // console.log('NEXt ', next, this.proof.rawImage[next]);
+        this.assureUploaded(next, keeper);
+      });
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
   public checkOutOrder() {
     this.loaders.saving = true;
     const userFrames = JSON.parse(this.cacheService.getStorage(ENV.SECRET_USER_KEY));
@@ -403,6 +527,7 @@ export class InitFrameComponent implements OnInit {
       this.alertService.error('Full name is required');
       this.endAction();
     } else if (!this.checkoutOrder.phone_number) {
+      this.alertService.error('Phone number is required');
       this.alertService.error('Phone number is required');
       this.endAction();
     } else if (!this.checkoutOrder.email) {
