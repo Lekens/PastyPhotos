@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import {Upload} from '../../models/upload';
+import {UtilService} from "../utilService/util.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadService {
   private basePath = '/pasty_photos_user_images';
-  constructor() { }
+  constructor(private utilService: UtilService) { }
   public uploadB64 (upload, dataObject: object, callback: any, index: string) {
     const storageRef = firebase.storage().ref();
     const itemForUpload = upload;
-    const name = `image-${Math.round(Math.random() * 100)}.png`;
+
+    const id = this.utilService.makeId(9);
+    const folder = this.utilService.makeId(12);
+    const name = `image-${Math.round(Math.random() * 100)}_${id}.png`;
     const uploadBase = itemForUpload.split(';base64,')[1];
-    const uploadTask = storageRef.child(`${this.basePath}/${name}`).putString(uploadBase, 'base64');
+    const uploadTask = storageRef.child(`${this.basePath}/${folder}/${name}`).putString(uploadBase, 'base64');
     // split out the image/png or jpg out of string
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) =>  {
@@ -38,9 +42,13 @@ export class UploadService {
   public uploadDefaults (upload, dataObject: object, callback: any, errorCallback: any, index: string) {
     const storageRef = firebase.storage().ref();
     const itemForUpload = JSON.parse(JSON.stringify(upload));
-    const name = `image-${Math.round(Math.random() * 100)}.png`;
+
+    const id = this.utilService.makeId(9);
+    const folder = this.utilService.makeId(12);
+    const name = `image-${Math.round(Math.random() * 100)}_${id}.png`;
+
     const uploadBase = itemForUpload.split(';base64,')[1];
-    const uploadTask = storageRef.child(`${this.basePath}/${name}`).putString(uploadBase, 'base64');
+    const uploadTask = storageRef.child(`${this.basePath}/${folder}/${name}`).putString(uploadBase, 'base64');
     // split out the image/png or jpg out of string
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) =>  {
@@ -90,15 +98,21 @@ export class UploadService {
     );
   }
 
-  public uploadMultiple(upload) {
+  public uploadMultiple(upload, percentageDone) {
+    const id = this.utilService.makeId(9);
+    const folder = this.utilService.makeId(12);
     const itemForUpload = JSON.parse(JSON.stringify(upload));
-    const name = `image-${Math.round(Math.random() * 100)}.png`;
+    const name = `image-${Math.round(Math.random() * 100)}_${id}.png`;
     const uploadBase = itemForUpload.split(';base64,')[1];
     return new Promise( (resolve, reject) => {
       const storageRef = firebase.storage().ref();
-      const uploadTask = storageRef.child(`${this.basePath}/${name}`).putString(uploadBase, 'base64');
+      const uploadTask = storageRef.child(`${this.basePath}/${folder}/${name}`).putString(uploadBase, 'base64');
       uploadTask.on('state_changed',
-        function progress(snapshot) {        },
+        function progress(snapshot) {
+          // const progressLoader = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100;
+          // console.log('PERCENTAGE DONE' , (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100);
+          // percentageDone += progressLoader;
+        },
         function error(err) {
           reject('');
         },
